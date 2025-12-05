@@ -21,6 +21,36 @@ You are the Research Assistant (RA), an AI integrated into VS Code that helps co
 4. `.research/logs/activity.md` - Recent activity log
 5. `tasks.md` - Current tasks
 
+## Slash Command Execution
+
+When a user types a slash command (e.g., `/transcribe`, `/next`, `/wrap_up`):
+
+1. **IMMEDIATELY** check if `.ra/commands/[command-name].md` exists
+2. **READ** that file completely before responding
+3. **FOLLOW** the instructions in that command file exactly
+4. If the command file doesn't exist, explain that the command isn't implemented yet
+
+Example: User types `/transcribe` → Read `.ra/commands/transcribe.md` → Execute according to that file's instructions.
+
+**Never** make assumptions about what a slash command should do - always read its definition file first.
+
+## Command Execution Protocol
+
+When a command is specified in a `.ra/commands/[name].md` file:
+
+1. **Copy the command exactly as written** - no simplification, no assumptions
+2. **Use the exact conda environment specified** - if `conda run -n research-assistant` is in the command, use it
+3. **If the command fails due to missing setup**, inform the user and ask if they want to:
+   - Set up the environment/tools
+   - Use an alternative approach
+4. **Never substitute or optimize commands** - the command file is the source of truth for how that task should run
+
+Example: If `.ra/commands/transcribe.md` specifies:
+```bash
+conda run -n research-assistant python tools/transcribe.py [filename]
+```
+Then run EXACTLY that command, including the conda environment. Don't run `python tools/transcribe.py [filename]` instead.
+
 ## First-Time Setup Detection
 
 On first interaction with a new project, check:
@@ -177,16 +207,21 @@ Which would you like to pursue? (Or tell me what you're thinking)
 └── quarterly/                   # Quarterly reviews
 
 ./  (project root)
-├── .github/copilot-instructions.md  # This file
+├── .ra/                         # RA tool framework
+│   ├── copilot-instructions.md  # This file
+│   ├── commands/                # Slash command definitions
+│   └── tools/                   # RA utility programs
 ├── .research/
 │   ├── project_telos.md         # Project state
 │   ├── phase_checklist.md       # Phase progress  
 │   ├── literature/              # Research outputs + .bib files
+│   ├── meetings/                # Meeting recordings and transcripts
+│   │   ├── audio/               # Audio files (.m4a, .mp3, .wav, etc.)
+│   │   └── transcripts/         # Transcript markdown files
 │   └── logs/
 │       ├── weekly/              # Weekly review logs
 │       ├── monthly/             # Monthly review logs
 │       └── activity.md          # Running activity log
-├── commands/                    # Slash command definitions
 ├── data/
 │   ├── raw/                     # Immutable source data
 │   ├── processed/               # Derived data
@@ -203,7 +238,6 @@ Which would you like to pursue? (Or tell me what you're thinking)
 │   ├── results.md
 │   ├── discussion.md
 │   └── figures/figN/            # Figure + caption pairs
-├── meetings/                    # Audio + transcripts
 ├── dvc.yaml                     # Pipeline definition
 ├── params.yaml                  # Pipeline parameters
 └── tasks.md                     # Quick todos

@@ -84,18 +84,23 @@ Weekly project check-ins. Monthly alignment checks. Quarterly mission reviews.
 ## Directory Structure
 
 ```
-├── .github/copilot-instructions.md    # RA brain and personality
+├── .ra/                               # RA tool framework
+│   ├── copilot-instructions.md        # RA brain and personality
+│   ├── commands/                      # Slash command definitions
+│   └── tools/                         # RA utilities (transcribe.py, etc.)
 ├── .research/
 │   ├── project_telos.md               # Your project's aims and state
 │   ├── phase_checklist.md             # Progress tracking
 │   ├── literature/                    # Research outputs with citations
+│   ├── meetings/                      # Meeting recordings and transcripts
+│   │   ├── audio/                     # Audio files (.m4a, .mp3, .wav)
+│   │   └── transcripts/               # Transcript markdown files
 │   └── logs/                          # Activity and review logs
-├── commands/                          # Slash command definitions
 ├── data/
 │   ├── raw/                           # Immutable source data
 │   ├── processed/                     # Derived data
 │   └── .sensitive/                    # Excluded from AI (IRB data, etc.)
-├── pipeline/scripts/                  # Your analysis code
+├── scripts/                           # Your analysis code
 ├── manuscript/
 │   ├── background.md
 │   ├── methods.md
@@ -110,6 +115,14 @@ Weekly project check-ins. Monthly alignment checks. Quarterly mission reviews.
 ```
 
 ## Two-Tier Context
+
+**RA Framework** (`.ra/`):
+- `copilot-instructions.md` - RA brain and personality
+- `commands/` - Slash command definitions
+- `tools/` - RA utilities (transcribe.py, etc.)
+- **Committed to git** - gets cloned with every project
+- **Readable by Copilot** - Copilot needs these to function as RA
+- **Don't modify** - part of the framework you're cloning
 
 **User-level** (`~/.researchAssistant/`):
 - `researcher_telos.md` - Your preferences, productivity patterns, strengths

@@ -30,10 +30,10 @@ data/processed/**/*.parquet
 models/
 
 # Audio/video (binary)
-meetings/*.m4a
-meetings/*.mp3
-meetings/*.wav
-meetings/*.mp4
+.research/meetings/audio/*.m4a
+.research/meetings/audio/*.mp3
+.research/meetings/audio/*.wav
+.research/meetings/audio/*.mp4
 *.m4a
 *.mp3
 *.wav

@@ -15,12 +15,13 @@
 
 2. **Set up environment**
    ```bash
-   # Using uv (recommended)
-   uv sync
-   
-   # Or using conda
+   # Create and activate conda environment
    conda env create -f environment.yml
-   conda activate [project-name]
+   conda activate research-assistant
+   
+   # Copy environment variables template
+   cp .env.example .env
+   # Edit .env to add your HuggingFace token (optional, for speaker diarization)
    ```
 
 3. **Run the pipeline**
@@ -34,6 +35,30 @@
    /next
    ```
 
+## Environment
+
+This project uses a **conda environment** to ensure all dependencies are available cross-platform.
+
+### What's Included
+
+| Package | Purpose |
+|---------|---------|
+| `ffmpeg` | Audio format conversion for transcription |
+| `pytorch` | ML framework for speaker diarization |
+| `dvc` | Data version control and pipelines |
+| `snakemake` | Alternative workflow management |
+| `faster-whisper` | Speech-to-text (99+ languages) |
+| `pyannote.audio` | Speaker diarization (optional) |
+
+### First-Time Model Download
+
+On first use, Whisper models are downloaded automatically (~2GB for `small` model):
+
+```bash
+# Test transcription (downloads model on first run)
+python tools/transcribe.py --help
+```
+
 ## Project Overview
 
 **Mission**: [Describe your research question/goal]
@@ -46,14 +71,18 @@
 
 ```
 .
-├── .github/
-│   └── copilot-instructions.md   # Research Assistant configuration
+├── .ra/
+│   ├── copilot-instructions.md   # Research Assistant configuration
+│   ├── commands/                 # Slash command definitions
+│   └── tools/                    # RA utilities (transcribe.py, etc.)
 ├── .research/
 │   ├── project_telos.md          # Project aims and state
 │   ├── phase_checklist.md        # Progress tracking
 │   ├── literature/               # Literature reviews and citations
+│   ├── meetings/                 # Meeting recordings and transcripts
+│   │   ├── audio/                # Audio files (.m4a, .mp3, .wav)
+│   │   └── transcripts/          # Transcript markdown files
 │   └── logs/                     # Activity and review logs
-├── commands/                     # Slash command definitions
 ├── data/
 │   ├── raw/                      # Original, immutable data
 │   ├── processed/                # Cleaned/transformed data
@@ -70,7 +99,6 @@
 │   ├── results.md
 │   ├── discussion.md
 │   └── figures/                  # Figures with captions
-├── meetings/                     # Meeting transcripts and notes
 ├── dvc.yaml                      # Pipeline definition
 ├── params.yaml                   # Pipeline parameters
 ├── tasks.md                      # Current tasks
@@ -101,6 +129,23 @@ This project template includes context files that guide VS Code's GitHub Copilot
 | `/transcribe [file]` | Transcribe meeting audio |
 | `/summarize_meeting [file]` | Extract action items |
 
+### Transcribing Meetings
+
+Record meetings and transcribe them for documentation:
+
+```bash
+# Transcribe a recording
+python tools/transcribe.py meetings/recording.m4a
+
+# Or use VS Code chat command
+/transcribe meetings/recording.m4a
+
+# Use larger model for better accuracy
+python tools/transcribe.py --model large-v3 meetings/recording.m4a
+```
+
+**Speaker Diarization**: To identify who is speaking, set up a HuggingFace token. See `tools/README.md` for instructions.
+
 ### Getting Started
 
 1. Open VS Code with GitHub Copilot enabled
@@ -111,10 +156,9 @@ This project template includes context files that guide VS Code's GitHub Copilot
 
 ### Prerequisites
 
-- Python 3.10+
-- [uv](https://github.com/astral-sh/uv) or conda
-- [DVC](https://dvc.org/) 3.0+
+- [Conda](https://docs.conda.io/en/latest/miniconda.html) (Miniconda or Anaconda)
 - Git
+- (Optional) NVIDIA GPU with CUDA for faster transcription
 
 ### Full Reproduction
 
@@ -124,7 +168,11 @@ git clone [repository-url]
 cd [project-name]
 
 # Set up environment
-uv sync
+conda env create -f environment.yml
+conda activate research-assistant
+
+# Copy environment config
+cp .env.example .env
 
 # Pull data (if using DVC remote)
 dvc pull

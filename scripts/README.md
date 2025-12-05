@@ -2,6 +2,9 @@
 
 This directory contains all scripts for the research project, including both pipeline analysis scripts and utility scripts.
 
+> **Note**: Research Assistant tools (like transcription) are in the `tools/` directory, not here.
+> See `tools/README.md` for transcription and other RA utilities.
+
 ## Purpose
 
 Use this directory for:
