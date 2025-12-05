@@ -1,4 +1,9 @@
-# /summarize_meeting Command
+---
+name: summarize-meeting
+description: Extract action items, decisions, and key points from meeting transcripts. Automatically routes items to tasks.md or GitHub Issues based on complexity. Use when the user types /summarize_meeting or after running /transcribe.
+---
+
+# Meeting Summary Generator
 
 > Extract action items, decisions, and key points from meeting transcripts.
 > Automatically routes items to tasks.md or GitHub Issues.
@@ -6,7 +11,7 @@
 ## Usage
 ```
 /summarize_meeting [transcript_file]
-/summarize_meeting meetings/2024-12-02-lab-meeting.md
+/summarize_meeting .research/meetings/transcripts/2024-12-02-lab-meeting.md
 ```
 
 ## When to Use
@@ -15,7 +20,7 @@
 - To process handwritten meeting notes (type them first)
 
 ## Prerequisites
-- Transcript exists in meetings/ folder
+- Transcript exists in `.research/meetings/transcripts/` folder
 - Transcript is in markdown format
 
 ## Execution Steps
@@ -23,7 +28,7 @@
 ### 1. Load Transcript
 
 Read the meeting transcript and project context:
-- `meetings/[filename].md` - The transcript
+- `.research/meetings/transcripts/[filename].md` - The transcript
 - `.research/project_telos.md` - Project aims (for context)
 - `tasks.md` - Current tasks (avoid duplicates)
 
@@ -162,7 +167,7 @@ If yes, create issues with:
 ```
 Meeting summarized!
 
-Summary added to: meetings/2024-12-02-lab-meeting.md
+Summary added to: .research/meetings/transcripts/2024-12-02-lab-meeting.md
 Tasks added: 3 new items in tasks.md
 Issues to create: 2 (awaiting confirmation)
 
@@ -210,12 +215,12 @@ What would you like to do?
 - [ ] Include supplementary figures in main text? - Needs: check journal guidelines
 ```
 
-## Related Commands
+## Related Skills
 
-- `/transcribe` - Generate transcript from audio
-- `/weekly_review` - See tasks in context of weekly work
-- `/plan_week` - Incorporate new tasks into weekly plan
-- `/next` - Get next suggestion
+- `transcribe` - Generate transcript from audio
+- `weekly-review` - See tasks in context of weekly work
+- `plan-week` - Incorporate new tasks into weekly plan
+- `next` - Get next suggestion
 
 ## Notes
 

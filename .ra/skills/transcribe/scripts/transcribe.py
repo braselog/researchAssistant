@@ -2,16 +2,16 @@
 """
 Transcribe audio files using Whisper with optional speaker diarization.
 
-This script is designed to work with the Research Assistant /transcribe command.
+This script is designed to work with the Research Assistant /transcribe skill.
 It uses faster-whisper for cross-platform, multi-language transcription and
 optionally pyannote.audio for speaker diarization.
 
 Usage:
-    python .ra/tools/transcribe.py .research/meetings/audio/recording.m4a
-    python .ra/tools/transcribe.py .research/meetings/audio/  # Process all untranscribed audio
-    python .ra/tools/transcribe.py --model large-v3 --language en .research/meetings/audio/recording.m4a
+    python .ra/skills/transcribe/scripts/transcribe.py .research/meetings/audio/recording.m4a
+    python .ra/skills/transcribe/scripts/transcribe.py .research/meetings/audio/  # Process all untranscribed audio
+    python .ra/skills/transcribe/scripts/transcribe.py --model large-v3 --language en .research/meetings/audio/recording.m4a
 
-For speaker diarization, set HF_TOKEN environment variable. See .ra/tools/README.md.
+For speaker diarization, set HF_TOKEN environment variable. See .ra/skills/transcribe/README.md.
 """
 
 import os
@@ -36,7 +36,7 @@ import numpy as np
 
 # Configuration from environment
 SCRIPT_DIR = Path(__file__).parent.absolute()
-PROJECT_ROOT = SCRIPT_DIR.parent.parent
+PROJECT_ROOT = SCRIPT_DIR.parent.parent.parent.parent  # .ra/skills/transcribe/scripts -> project root
 
 MEETINGS_AUDIO_DIR = PROJECT_ROOT / '.research' / 'meetings' / 'audio'
 MEETINGS_TRANSCRIPTS_DIR = PROJECT_ROOT / '.research' / 'meetings' / 'transcripts'

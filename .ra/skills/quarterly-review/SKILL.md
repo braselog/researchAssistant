@@ -1,4 +1,9 @@
-# /quarterly_review Command
+---
+name: quarterly-review
+description: Conduct a quarterly review of your overall research mission and direction. This is a user-level review stored in ~/.researchAssistant/. Use when the user types /quarterly_review, every 3 months, after major project milestones, or when questioning research direction.
+---
+
+# Quarterly Review
 
 > Conduct a quarterly review of your overall research mission and direction.
 > This is a user-level review stored in ~/.researchAssistant/
@@ -163,27 +168,7 @@ Let's do your quarterly reflection. Take a moment to think big-picture.
 Take your time - these answers are just for you.
 ```
 
-### 4. Pattern Analysis
-
-Look across quarters:
-
-```markdown
-## Quarter-over-Quarter Trends
-
-### Productivity
-| Quarter | Projects Active | Papers | Key Outputs |
-|---------|-----------------|--------|-------------|
-| Q1 | 2 | 0 | Pipeline completed |
-| Q2 | 2 | 1 submitted | Major analysis done |
-| Q3 | 3 | 1 published | [Current] |
-
-### Recurring Themes
-- Consistently strong at: [Pattern]
-- Consistently challenging: [Pattern]
-- Emerging trend: [Pattern]
-```
-
-### 5. Update User Profile
+### 4. Update User Profile
 
 If mission has evolved, prompt:
 ```
@@ -195,7 +180,7 @@ Suggested: [Refined based on responses]
 Would you like to update your researcher_telos.md?
 ```
 
-### 6. Next Steps
+### 5. Next Steps
 
 ```
 Quarterly review saved to ~/.researchAssistant/quarterly/[QUARTER].md
@@ -217,11 +202,11 @@ D) Celebrate your progress! 🎉
 What would you like to focus on?
 ```
 
-## Related Commands
+## Related Skills
 
-- `/weekly_review` - Tactical progress
-- `/monthly_review` - Project alignment
-- `/next` - Get next suggestion
+- `weekly-review` - Tactical progress
+- `monthly-review` - Project alignment
+- `next` - Get next suggestion
 
 ## Notes
 

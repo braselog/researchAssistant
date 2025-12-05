@@ -1,5 +1,9 @@
-````markdown
-# /note Command
+---
+name: note
+description: Quick capture for thoughts, observations, or ideas during research sessions. Use when the user types /note or wants to capture a quick thought without context-switching. Logs timestamped notes to activity.md. Supports both explicit /note command and natural language like "make a note" or "jot down".
+---
+
+# Quick Note Capture
 
 > Quick capture for thoughts, observations, or ideas during a work session.
 
@@ -169,7 +173,6 @@ RA: Here's today's summary:
     ...
 ```
 
-## Related Commands
-- `/wrap_up` - Integrates notes into full daily summary
-- `/task` - For action items (use instead of /note for todos)
-````
+## Related Skills
+- `wrap-up` - Integrates notes into full daily summary
+- `task` - For action items (use instead of /note for todos)

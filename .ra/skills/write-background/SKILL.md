@@ -1,4 +1,9 @@
-# /write_background Command
+---
+name: write-background
+description: Draft or update the background/introduction section based on literature in .research/literature/. Use when the user types /write_background, after completing literature review, or when background.md is empty but literature files exist.
+---
+
+# Write Background Section
 
 > Draft or update the background/introduction section based on literature in .research/literature/
 
@@ -71,6 +76,14 @@ While effective for [use case], this method [limitation or gap].
 Despite these advances, [gap 1] remains poorly understood. Additionally, 
 [gap 2] has received limited attention, particularly in the context of 
 [specific application].
+
+## [Your Contribution - 1 paragraph]
+<!-- How does your work address these gaps? -->
+<!-- State aims clearly without overpromising -->
+
+In this study, we address [gap] by [approach]. Specifically, we [aim 1], 
+[aim 2], and [aim 3]. Our approach differs from prior work by [key 
+distinction].
 ```
 
 ### Types of Gaps
@@ -91,50 +104,6 @@ Identify which type of gap your study addresses:
 - "The relationship between [A] and [B] remains unclear."
 - "Limited evidence exists regarding..."
 - "A critical gap in our understanding is..."
-```
-
-### Research Question/Hypothesis Setup
-
-**For Hypothesis-Driven Research:**
-```markdown
-"Based on [theoretical framework/previous findings], we hypothesized 
-that [specific, testable prediction]. To test this, we [approach]."
-```
-
-**For Exploratory Research:**
-```markdown
-"The objective of this study was to [primary aim]. Specifically, we 
-sought to: (1) [aim 1], (2) [aim 2], and (3) [aim 3]."
-```
-
-### Common Introduction Mistakes
-
-1. **Too broad opening**
-   - ❌ "Since the beginning of time, humans have wondered about..."
-   - ✅ "[Specific topic] affects [specific population/process]..."
-
-2. **Literature review too detailed**
-   - Introduction ≠ full literature review
-   - Include only what's needed to establish the gap
-
-3. **Gap not clearly stated**
-   - Make it explicit, not implied
-   - Should appear before study aims
-
-4. **Objectives mismatch methods**
-   - Every stated objective must be addressed in Methods/Results
-
-5. **Excessive length**
-   - Typical length: 500-1000 words (3-5 paragraphs)
-   - Follow journal guidelines
-
-## [Your Contribution - 1 paragraph]
-<!-- How does your work address these gaps? -->
-<!-- State aims clearly without overpromising -->
-
-In this study, we address [gap] by [approach]. Specifically, we [aim 1], 
-[aim 2], and [aim 3]. Our approach differs from prior work by [key 
-distinction].
 ```
 
 ### 4. Writing Guidelines
@@ -210,35 +179,29 @@ B) Run /deep_research on [suggested missing topic]
 C) Proceed to /write_methods if pipeline is ready
 ```
 
-## Example Output Section
+## Common Introduction Mistakes
 
-```markdown
-## Current Approaches to Gene Expression Normalization
+1. **Too broad opening**
+   - ❌ "Since the beginning of time, humans have wondered about..."
+   - ✅ "[Specific topic] affects [specific population/process]..."
 
-Normalization of RNA-seq data is essential for accurate differential 
-expression analysis, as raw count data reflects both biological variation 
-and technical artifacts (Dillies et al., 2013). Several approaches have 
-emerged to address this challenge.
+2. **Literature review too detailed**
+   - Introduction ≠ full literature review
+   - Include only what's needed to establish the gap
 
-**Library size normalization** scales counts by the total number of reads 
-per sample (Mortazavi et al., 2008). While computationally simple, this 
-approach assumes equal total RNA content across samples—an assumption 
-that may be violated in many experimental designs, particularly those 
-involving different cell types or treatment conditions.
+3. **Gap not clearly stated**
+   - Make it explicit, not implied
+   - Should appear before study aims
 
-**Reference-based methods** such as TMM (Robinson & Oshlack, 2010) and 
-RLE (Anders & Huber, 2010) identify a set of stable reference features 
-to compute scaling factors. These methods have become standard in tools 
-like edgeR and DESeq2, demonstrating robust performance across diverse 
-datasets (Love et al., 2014).
+4. **Objectives mismatch methods**
+   - Every stated objective must be addressed in Methods/Results
 
-Despite the success of these methods for bulk RNA-seq, their application 
-to **single-cell data** remains challenging due to high dropout rates 
-and sparse count matrices (Kharchenko et al., 2014).
-```
+5. **Excessive length**
+   - Typical length: 500-1000 words (3-5 paragraphs)
+   - Follow journal guidelines
 
-## Related Commands
+## Related Skills
 
-- `/deep_research [topic]` - If more literature is needed
-- `/write_methods` - Next manuscript section
-- `/next` - Get suggestions for next steps
+- `deep-research` - If more literature is needed
+- `write-methods` - Next manuscript section
+- `next` - Get suggestions for next steps

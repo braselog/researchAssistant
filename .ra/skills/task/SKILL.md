@@ -1,5 +1,9 @@
-````markdown
-# /task Command
+---
+name: task
+description: Rapid task capture without breaking flow. Use when the user types /task or wants to quickly add a todo item to tasks.md. Supports priority flags (!high, !low). Use this instead of /note for action items.
+---
+
+# Rapid Task Capture
 
 > Rapid task capture without breaking flow.
 
@@ -143,8 +147,7 @@ RA: ✅ Added to low priority tasks.
 - [ ] Someday refactor the whole pipeline
 ```
 
-## Related Commands
-- `/note` - For observations/thoughts (not action items)
-- `/plan_week` - Organize tasks into weekly plan
-- `/summarize_meeting` - Extracts tasks from meeting notes automatically
-````
+## Related Skills
+- `note` - For observations/thoughts (not action items)
+- `plan-week` - Organize tasks into weekly plan
+- `summarize-meeting` - Extracts tasks from meeting notes automatically

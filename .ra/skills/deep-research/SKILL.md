@@ -1,4 +1,9 @@
-# /deep_research Command
+---
+name: deep-research
+description: Conduct a thorough literature search on a topic with verified citations. Use when the user types /deep_research, asks to "research a topic", "find papers on", or needs literature review. CRITICAL - Never fabricate citations. Every claim must have a verifiable source.
+---
+
+# Deep Literature Research
 
 > Conduct a thorough literature search on a topic with verified citations.
 > **CRITICAL**: Never fabricate citations. Every claim must have a verifiable source.
@@ -89,7 +94,7 @@ Apply the ACRAP criteria to each source:
 6. ✅ If no source exists, explicitly state: "Gap identified: No literature found on [specific topic]"
 7. ✅ If uncertain, say: "Limited sources found. Manual verification recommended."
 
-### 4. Organize Findings
+### 5. Organize Findings
 
 Structure the output as:
 
@@ -132,40 +137,7 @@ Key findings:
 [Full BibTeX entries for all citations]
 ```
 
-### Organizational Structure Options
-
-Choose the structure that best fits the topic:
-
-| Structure | Best For | Example |
-|-----------|----------|----------|
-| **Chronological** | Historical development, evolution of ideas | "1980s early work → 2000s key advances → 2020s current state" |
-| **Thematic** | Multiple subtopics, most common choice | "Theme 1: Methods, Theme 2: Applications, Theme 3: Limitations" |
-| **Methodological** | Comparing research approaches | "Quantitative → Qualitative → Mixed methods" |
-| **Theoretical** | Comparing explanatory frameworks | "Theory A perspective → Theory B → Integration" |
-
-### Common Literature Review Mistakes to Avoid
-
-1. **Summarizing instead of synthesizing**
-   - ❌ "Smith (2020) found X. Jones (2021) found Y. Lee (2022) found Z."
-   - ✅ "While early work focused on X (Smith, 2020), recent studies reveal a broader pattern of Y and Z (Jones, 2021; Lee, 2022)."
-
-2. **Imbalanced coverage**
-   - Include studies that contradict your position
-   - Represent the full landscape of evidence
-
-3. **Missing recent publications**
-   - Aim for >50% of citations from last 5 years
-   - Seminal older works are acceptable exceptions
-
-4. **Unclear connection to your study**
-   - Always connect back to your research question
-   - End each section with: "This is relevant because..."
-
-5. **Citation strings without synthesis**
-   - ❌ "Many studies support this (A, 2020; B, 2021; C, 2022; D, 2023; E, 2023)."
-   - ✅ "This finding is well-established, with consistent support across methodologies (A, 2020; B, 2021) and populations (C, 2022; D, 2023)."
-
-### 5. Save Outputs
+### 6. Save Outputs
 
 Save to `.research/literature/`:
 - `[topic-slug].md` - The literature summary
@@ -177,40 +149,6 @@ Example:
 ├── rna-seq-normalization.md
 └── rna-seq-normalization.bib
 ```
-
-### 6. Document Search for Reproducibility (PRISMA-style)
-
-For systematic reviews or when rigor matters, document:
-
-```markdown
-## Search Documentation
-
-**Date of search**: YYYY-MM-DD
-**Databases searched**: [List all]
-
-| Database | Search String | Results | After Dedup |
-|----------|---------------|---------|-------------|
-| PubMed | "term1" AND "term2" | 142 | 98 |
-| Scopus | ... | ... | ... |
-| arXiv | ... | ... | ... |
-
-**Filters applied**: [Date range, language, article type]
-**Inclusion criteria**: [What was included]
-**Exclusion criteria**: [What was excluded]
-**Total unique sources reviewed**: [N]
-**Sources included in final review**: [N]
-```
-
-### Avoiding Bias in Literature Review
-
-- ✅ Search multiple databases (not just one)
-- ✅ Include grey literature when appropriate (theses, preprints, reports)
-- ✅ Seek studies with negative/null findings
-- ✅ Consider publication bias (positive results are over-published)
-- ✅ Look for non-English sources if possible
-- ✅ Document why sources were excluded
-- ❌ Don't cherry-pick sources that support your hypothesis
-- ❌ Don't ignore contradictory evidence
 
 ### 7. Prompt Next Steps
 
@@ -288,55 +226,7 @@ Before finalizing, verify:
 - [ ] No made-up author names or publication details
 - [ ] Gaps and limitations are explicitly stated
 
-## Related Commands
+## Related Skills
 
-- `/write_background` - Use literature to draft background section
-- `/next` - Get next suggested step
-- Run again with new topic for additional literature
-
-## Example Output
-
-```markdown
-# Literature Review: Normalization Methods for RNA-seq
-
-## Executive Summary
-RNA-seq data normalization is essential for accurate differential expression analysis. Multiple methods exist with different assumptions about data distribution and sources of technical variation.
-
-## Current State of the Field
-
-### Total Count Normalization
-The simplest approach scales counts by total library size (Mortazavi et al., 2008). While computationally efficient, this method assumes similar total RNA content across samples, which may not hold in all experimental designs.
-
-### TMM and RLE Methods
-Trimmed Mean of M-values (TMM) (Robinson & Oshlack, 2010) and Relative Log Expression (RLE) (Anders & Huber, 2010) address compositional bias by identifying stable reference genes. These methods are implemented in edgeR and DESeq2 respectively.
-
-Key findings:
-- TMM is robust to outliers (Robinson & Oshlack, 2010)
-- RLE performs well with high replicate counts (Love et al., 2014)
-
-### Gaps in the Literature
-- Gap identified: Limited comparison studies for single-cell RNA-seq normalization
-- Ongoing debate: Best practices for cross-species comparisons
-
-## References
-
-@article{robinson2010tmm,
-  author = {Robinson, Mark D and Oshlack, Alicia},
-  title = {A scaling normalization method for differential expression analysis of RNA-seq data},
-  journal = {Genome Biology},
-  year = {2010},
-  volume = {11},
-  pages = {R25},
-  doi = {10.1186/gb-2010-11-3-r25}
-}
-
-@article{anders2010deseq,
-  author = {Anders, Simon and Huber, Wolfgang},
-  title = {Differential expression analysis for sequence count data},
-  journal = {Genome Biology},
-  year = {2010},
-  volume = {11},
-  pages = {R106},
-  doi = {10.1186/gb-2010-11-10-r106}
-}
-```
+- `write-background` - Use literature to draft background section
+- `next` - Get next suggested step

@@ -1,4 +1,9 @@
-# /review_script Command
+---
+name: review-script
+description: Review a script for documentation quality, code standards, and reproducibility. Helps ensure code is ready for the methods section. Use when the user types /review_script, after writing a new script, before writing methods, or when passive checks flag undocumented scripts.
+---
+
+# Script Review
 
 > Review a script for documentation quality, code standards, and reproducibility.
 > Helps ensure code is ready for the methods section.
@@ -6,8 +11,8 @@
 ## Usage
 ```
 /review_script [path]
-/review_script pipeline/scripts/preprocessing.py
-/review_script pipeline/scripts/  # Review all scripts in directory
+/review_script scripts/preprocessing.py
+/review_script scripts/  # Review all scripts in directory
 ```
 
 ## When to Use
@@ -45,8 +50,9 @@ For each script, check:
 - [ ] Complex logic is explained
 - [ ] Magic numbers are explained
 - [ ] Non-obvious decisions documented
+```
 
-#### Inline Comment Guidance: Explain WHY, Not WHAT
+### Inline Comment Guidance: Explain WHY, Not WHAT
 
 ```python
 # ❌ BAD: States the obvious (what the code does)
@@ -64,12 +70,6 @@ if threshold > 0.5:  # Check if threshold is greater than 0.5
 if threshold > 0.5:  # Optimized cutoff from ROC analysis (see supplementary Fig S2)
 ```
 
-### Reproducibility
-- [ ] Random seeds set (if applicable)
-- [ ] Parameters configurable (not hardcoded)
-- [ ] Dependencies importable
-```
-
 ### 3. Code Quality Checks
 
 ```markdown
@@ -83,17 +83,13 @@ if threshold > 0.5:  # Optimized cutoff from ROC analysis (see supplementary Fig
 - 🟡 Recommended: [Should fix]
 - 🔵 Suggestion: [Nice to have]
 
-**Examples:**
-```python
-# Issue: Magic number without explanation
-threshold = 0.7  # TODO: document why 0.7
-
-# Better:
-threshold = 0.7  # Based on ROC analysis (see Figure S1)
-```
+### Reproducibility
+- [ ] Random seeds set (if applicable)
+- [ ] Parameters configurable (not hardcoded)
+- [ ] Dependencies importable
 ```
 
-### 4. Docstring Template
+### 4. Docstring Templates
 
 If missing, suggest adding:
 
@@ -228,55 +224,6 @@ D) Show me the full suggested improvements
 Choice?
 ```
 
-## Version Control Best Practices
-
-### Commit Message Format
-
-Use this format for meaningful git history:
-
-```
-<type>: <subject>
-
-<optional body>
-
-Types:
-- feat:     New feature or analysis
-- fix:      Bug fix
-- docs:     Documentation only
-- refactor: Code restructuring (no behavior change)
-- test:     Adding or updating tests
-- data:     Data processing or cleaning changes
-- style:    Formatting, no code change
-```
-
-**Examples:**
-```bash
-git commit -m "feat: Add bootstrap confidence interval calculation"
-git commit -m "fix: Correct degrees of freedom in t-test"
-git commit -m "docs: Add docstrings to preprocessing module"
-git commit -m "data: Add outlier filtering step to pipeline"
-```
-
-### Naming Conventions
-
-**Files:**
-```
-YYYYMMDD_experiment_condition_replicate.csv
-2024-03-15_qpcr_treatment_01.csv
-preprocess_rnaseq.py  (lowercase with underscores)
-```
-
-**Variables:**
-```python
-# ✅ Good: lowercase_with_underscores
-subject_id, reaction_time_ms, treatment_group
-
-# ❌ Avoid:
-subjectID          # camelCase in Python
-"data file.csv"    # Spaces in names
-1_first_column     # Starting with numbers
-```
-
 ## Quality Standards
 
 ### Documentation Levels
@@ -304,76 +251,10 @@ subjectID          # camelCase in Python
 - [ ] Error messages are informative
 ```
 
-### Publication-Ready Checklist
+## Related Skills
 
-Before manuscript submission, verify:
-
-```markdown
-## Publication Reproducibility Checklist
-
-- [ ] All analysis code in version control (git)
-- [ ] Random seeds set and documented in params.yaml
-- [ ] Package/environment versions recorded (requirements.txt or environment.yml)
-- [ ] Data processing pipeline fully documented
-- [ ] Steps to reproduce results in README
-- [ ] Code archived with DOI (Zenodo/Figshare) ← Do before submission
-- [ ] Code repository link included in manuscript
-- [ ] CITATION.cff file created for proper attribution
-```
-
-### CITATION.cff Template
-
-Create this file in your project root to make your code citable:
-
-```yaml
-cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
-authors:
-  - family-names: "[Your Last Name]"
-    given-names: "[Your First Name]"
-    orcid: "https://orcid.org/0000-0000-0000-0000"  # Optional but recommended
-  - family-names: "[Collaborator Last Name]"
-    given-names: "[Collaborator First Name]"
-title: "[Your Project Title]"
-version: 1.0.0
-date-released: YYYY-MM-DD
-url: "https://github.com/username/repository"
-doi: "10.5281/zenodo.XXXXXXX"  # Add after Zenodo archive
-license: MIT  # Or your chosen license
-repository-code: "https://github.com/username/repository"
-keywords:
-  - [keyword1]
-  - [keyword2]
-```
-
-### Changelog Format
-
-Maintain a CHANGELOG.md in your project:
-
-```markdown
-# Changelog
-
-## [Unreleased]
-### Added
-- New feature or analysis
-
-## [1.0.0] - YYYY-MM-DD
-### Added
-- Initial analysis pipeline
-- Preprocessing module
-
-### Changed
-- Updated normalization method
-
-### Fixed
-- Corrected sample size calculation
-```
-
-## Related Commands
-
-- `/write_methods` - Document script in methods section
-- `/next` - Get next suggestion
-- Run again with different script path
+- `write-methods` - Document script in methods section
+- `next` - Get next suggestion
 
 ## Notes
 

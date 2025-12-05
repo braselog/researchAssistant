@@ -1,4 +1,9 @@
-# /weekly_review Command
+---
+name: weekly-review
+description: Conduct a weekly review of project progress and plan for the upcoming week. Use when the user types /weekly_review, when it's Monday and no review exists for this week, or at the end of the work week. Aggregates daily activity entries and identifies patterns.
+---
+
+# Weekly Review
 
 > Conduct a weekly review of project progress and plan for the upcoming week.
 
@@ -142,31 +147,6 @@ C) 📝 Continue with [top priority]
 What would you like to do?
 ```
 
-## Weekly Review Template (Minimal)
-
-For quick reviews:
-
-```markdown
-# Weekly Review: [DATE]
-
-**Top 3 accomplishments:**
-1. 
-2. 
-3. 
-
-**Biggest challenge:**
-
-
-**Next week's focus:**
-
-
-**Blockers:**
-- None / [List]
-
----
-*5-min review completed*
-```
-
 ## Patterns to Watch For
 
 ### Warning Signs
@@ -176,7 +156,7 @@ Flag if detected:
 - Phase not progressing
 - Declining focus scores
 - Growing task backlog
-- **Motivation decline**: Reduced engagement, avoidance behaviors, dreading project work
+- **Motivation decline**: Reduced engagement, avoidance behaviors
 - **Scope creep**: Project expanding without planned adjustment
 
 ### Recovery Strategies (When Off-Track)
@@ -190,15 +170,6 @@ If warning signs are present:
 5. **Document the decision** - Write down what changed and why
 6. **Set clear checkpoints** - Define how you'll know if recovery is working
 
-```markdown
-## Recovery Plan (if needed)
-
-**Issue identified**: [What's wrong]
-**Root cause**: [Why it happened]
-**Corrective action**: [What will change]
-**Check-in date**: [When to reassess]
-```
-
 ### Positive Patterns
 Celebrate:
 - Consistent commits
@@ -206,11 +177,11 @@ Celebrate:
 - Blockers resolved
 - Completed aims
 
-## Related Commands
+## Related Skills
 
-- `/plan_week` - Create detailed weekly plan
-- `/monthly_review` - Zoom out for monthly perspective
-- `/next` - Get next suggestion
+- `plan-week` - Create detailed weekly plan
+- `monthly-review` - Zoom out for monthly perspective
+- `next` - Get next suggestion
 
 ## Notes
 

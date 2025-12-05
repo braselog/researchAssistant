@@ -1,4 +1,9 @@
-# /write_results Command
+---
+name: write-results
+description: Draft the results section from figures and their captions. Builds a coherent narrative from visual evidence. Use when the user types /write_results, when figures exist with captions, or after methods section is complete.
+---
+
+# Write Results Section
 
 > Draft the results section from figures and their captions.
 > Builds a coherent narrative from visual evidence.
@@ -134,20 +139,6 @@ Results should be organized around figures, not chronologically.
 | η² (ANOVA) | 0.01 | 0.06 | 0.14 |
 | Odds Ratio | 1.5 | 2.5 | 4.0 |
 
-**Significant Figures:**
-- Use 2 significant digits for most statistics
-- Match precision to measurement precision
-- Be consistent throughout
-
-**Tables vs Figures Decision:**
-
-| Use Tables When... | Use Figures When... |
-|--------------------|---------------------|
-| Exact values are important | Patterns/trends matter |
-| Comparing many groups | Showing relationships |
-| Precise numbers needed | Visual impact needed |
-| Complex, multidimensional data | Simple comparisons |
-
 ### 6. Generate Results Draft
 
 ```markdown
@@ -164,16 +155,13 @@ Aims from: .research/project_telos.md
 - Nothing is interpreted (save for Discussion)
 -->
 
-## [Heading for Aim 1: e.g., "Gene expression patterns differ by condition"]
+## [Heading for Aim 1]
 
 [Opening sentence connecting to aim]
 
 To address [Aim 1], we [brief method reference]. Analysis of [N] samples 
 revealed [main finding] (Figure 1A). Specifically, [quantitative details 
 with statistics]. [Additional observation from Figure 1B].
-
-<!-- Figure 1 reference block -->
-**Figure 1.** [Brief inline reference to caption topic]
 
 ## [Heading for Aim 2]
 
@@ -215,21 +203,6 @@ color/symbol meanings]
 [One sentence summary of what this figure demonstrates]
 ```
 
-**Caption example:**
-```markdown
-# Figure 1. Random forest outperforms logistic regression for protein classification
-
-**(A)** ROC curves comparing classification performance. Random forest 
-(blue, AUC = 0.92) showed superior discrimination compared to logistic 
-regression (orange, AUC = 0.78). **(B)** Feature importance rankings 
-from the random forest model. The top 10 features are shown with their 
-mean decrease in accuracy (±SD from 100 bootstrap iterations).
-
-n = 150 samples (75 per class). Error bands in (A) represent 95% 
-confidence intervals from 5-fold cross-validation. Asterisks in (B) 
-indicate features also significant in univariate analysis (*p < 0.05).
-```
-
 ### 8. Results vs Discussion
 
 | Belongs in Results | Belongs in Discussion |
@@ -250,7 +223,7 @@ A) Review and verify statistics
 B) Refine figure captions
    Ensure captions and text complement (not duplicate)
 
-C) Proceed to /write_discussion
+C) Proceed to write discussion
    Use these findings as basis for interpretation
 
 D) Run /next for other suggestions
@@ -259,12 +232,11 @@ Any figures missing captions?
 ⚠️ manuscript/figures/fig3/ has no caption.md
 ```
 
-## Related Commands
+## Related Skills
 
-- `/write_discussion` - Interpret these results (coming soon)
-- `/write_methods` - Ensure methods match
-- `/review_script` - Verify analysis code
-- `/next` - Get next suggestions
+- `write-methods` - Ensure methods match
+- `review-script` - Verify analysis code
+- `next` - Get next suggestions
 
 ## Notes
 

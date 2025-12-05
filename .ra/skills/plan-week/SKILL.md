@@ -1,4 +1,9 @@
-# /plan_week Command
+---
+name: plan-week
+description: Create a focused weekly plan based on tasks, priorities, and your work patterns. Use when the user types /plan_week, after a weekly review, at the start of a new week, or when feeling overwhelmed by options.
+---
+
+# Weekly Planning
 
 > Create a focused weekly plan based on tasks, priorities, and your work patterns.
 
@@ -196,21 +201,6 @@ D) Add something I missed
 
 Save to `.research/logs/weekly/YYYY-MM-DD-plan.md`
 
-### 8. Optional: Calendar Integration
-
-If user wants calendar integration:
-```
-Would you like me to suggest calendar blocks for deep work?
-
-Based on your patterns:
-- Tuesday/Wednesday mornings are your best focus times
-- Suggested: Block 9am-12pm for [main task]
-
-I can't directly modify your calendar, but you could add:
-- "Deep Work: [Task]" - [Day] 9:00-12:00
-- "Writing Block" - [Day] 2:00-4:00
-```
-
 ## Planning Principles
 
 1. **Start with the hardest/most important thing**
@@ -235,11 +225,11 @@ I can't directly modify your calendar, but you could add:
 6. **Protect focus time**
    - Identify and block best hours
 
-## Related Commands
+## Related Skills
 
-- `/weekly_review` - Review last week first
-- `/next` - Get immediate next action
-- `/monthly_review` - Bigger picture priority setting
+- `weekly-review` - Review last week first
+- `next` - Get immediate next action
+- `monthly-review` - Bigger picture priority setting
 
 ## Notes
 

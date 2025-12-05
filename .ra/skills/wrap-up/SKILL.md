@@ -1,5 +1,9 @@
-````markdown
-# /wrap_up Command
+---
+name: wrap-up
+description: End-of-day command to capture what happened, consolidate notes, and set up for tomorrow. Use when the user types /wrap_up, says "end of day", "wrapping up", or "done for the day". Gathers git activity, integrates /note entries, and creates a daily summary in activity.md.
+---
+
+# End of Day Wrap-up
 
 > End-of-day command to capture what happened, consolidate notes, and set up for tomorrow.
 
@@ -165,8 +169,7 @@ Looks like a lighter session. Quick note instead of full entry?
 Got it, added to today's log.
 ```
 
-## Related Commands
-- `/note` - Add quick thoughts during the day (integrated by /wrap_up)
-- `/next` - Start of session, will reference this entry
-- `/weekly_review` - Aggregates these daily entries
-````
+## Related Skills
+- `note` - Add quick thoughts during the day (integrated by /wrap_up)
+- `next` - Start of session, will reference this entry
+- `weekly-review` - Aggregates these daily entries
