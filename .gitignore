@@ -144,7 +144,6 @@ secrets/
 
 # Logs
 *.log
-logs/
 
 # Temporary
 tmp/
