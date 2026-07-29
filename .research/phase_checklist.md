@@ -77,6 +77,9 @@ Project aims are clear, you understand the field, background draft exists → Re
 
 - [ ] Pipeline runs end-to-end (dvc repro works)
 - [ ] Unit tests for critical functions
+- [ ] Known-answer fixture for each scientifically consequential calculation
+- [ ] Missing, malformed, empty, and mismatched inputs fail loudly
+- [ ] Placeholder scan and repository doctor pass
 - [ ] README in pipeline/scripts/ explains workflow
 - [ ] Regular commits with descriptive messages
 
@@ -92,6 +95,8 @@ Pipeline is functional and documented → Ready for ANALYSIS
 ### Required (Must complete before WRITING)
 
 - [ ] Full pipeline executed successfully
+- [ ] Expected sample IDs and counts reconciled at each stage
+- [ ] Key metric numerators, denominators, units, and replicate levels audited
 - [ ] At least one figure generated
 - [ ] Figure captions drafted
   - [ ] manuscript/figures/fig1/caption.md exists for each figure
@@ -142,6 +147,8 @@ All sections drafted → Ready for REVIEW
 ### Checklist
 
 - [ ] Full reproducibility test (clone repo, run pipeline, verify outputs)
+- [ ] Independent known-answer or second-method check for critical results
+- [ ] Analysis audit completed with residual risks documented
 - [ ] All figures regenerate correctly
 - [ ] Methods match code exactly
 - [ ] References verified (no hallucinated citations)
