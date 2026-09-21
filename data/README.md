@@ -73,10 +73,10 @@ Use checksums to verify raw data hasn't been corrupted:
 
 ```bash
 # Generate checksum when first acquiring data
-md5 data/raw/samples.csv > data/raw/samples.csv.md5
+md5sum data/raw/samples.csv > data/raw/samples.csv.md5
 
 # Verify later
-md5 -c data/raw/samples.csv.md5
+md5sum -c data/raw/samples.csv.md5
 ```
 
 Or in Python:

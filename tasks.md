@@ -1,33 +1,14 @@
 # Tasks
 
-> Quick todos for this project. Updated by the Research Assistant and manually.
-> Items here should take < 2 hours. Larger items → GitHub Issues.
+Lightweight personal actions for this project. Updated manually or with `/task`.
+
+Use a GitHub issue when work spans sessions, changes repository artifacts, requires review or acceptance criteria, or represents a scientifically meaningful unit of work.
 
 ## High Priority
-<!-- Do these first -->
-
-- [ ] Set up project (run /next to get started)
+- [ ] Complete project setup with `/next`
 
 ## Normal Priority
-<!-- Do when high priority is clear -->
-
 
 ## Low Priority / Someday
-<!-- Nice to have, not urgent -->
-
 
 ## Completed
-<!-- Move items here when done, with date -->
-
-
----
-
-## From Meetings
-
-<!-- Tasks extracted from meeting summaries appear here -->
-
-
----
-
-*Use `/summarize_meeting` to automatically extract tasks from meeting notes.*
-*Use `/plan_week` to organize tasks into a weekly plan.*

@@ -23,4 +23,4 @@ Inspect repository state with deterministic evidence where possible.
 Use file timestamps only as a clue, not proof. Prefer hashes, workflow status, diffs, test outputs, and explicit links.
 
 ## Output
-Rank findings as critical, important, or informational. For each give evidence, impact, and the smallest corrective action. Route tracking inconsistencies to `sync-project-state`; code validity concerns to `verify-implementation` or `review-script`. Do not modify files unless asked.
+Rank findings as critical, important, or informational. For each give evidence, impact, and the smallest corrective action. Route tracking inconsistencies to `sync-project-state` and code-validity concerns to `review-script`. Do not modify files unless asked.

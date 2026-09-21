@@ -25,5 +25,3 @@ Do not infer time, energy, motivation, or productivity from commit counts. Ask r
 ## Project implications
 ## Top three priorities
 ```
-
-Save under `.research/logs/weekly/`. Propose state changes separately so the user can approve them. See [original guidance](reference/original-guidance.md) for useful warning signs, excluding speculative behavioural inference.

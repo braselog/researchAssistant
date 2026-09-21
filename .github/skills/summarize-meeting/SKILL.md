@@ -43,5 +43,3 @@ Ask before creating GitHub issues or formal decision records unless the user exp
 ## Open questions
 ## State updates proposed
 ```
-
-Add a source link to the transcript for every created task, issue, or decision. See [original guidance](reference/original-guidance.md) for detailed examples.

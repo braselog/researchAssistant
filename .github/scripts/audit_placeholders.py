@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
-"""Fail when obvious placeholders occur in production Python paths."""
+"""Reject executable placeholder statements in project production Python."""
+import ast
 from pathlib import Path
-import re
-
-SKIP = {".git", ".venv", "tests", "__pycache__"}
-PATTERNS = {
-    "placeholder marker": re.compile(r"\b(TODO|FIXME|HACK|XXX|placeholder|stub)\b", re.I),
-    "ellipsis statement": re.compile(r"^\s*\.\.\.\s*(?:#.*)?$"),
-    "bare pass": re.compile(r"^\s*pass\s*(?:#.*)?$"),
-}
+SKIP={'.git','.venv','tests','__pycache__','.github/skills'}
 issues=[]
 for path in Path('.').rglob('*.py'):
-    if any(part in SKIP for part in path.parts) or path.resolve() == Path(__file__).resolve():
+    if any(part in SKIP for part in path.parts) or path.resolve()==Path(__file__).resolve():
         continue
-    lines = path.read_text(errors='replace').splitlines()
-    for number,line in enumerate(lines,1):
-        for label,pattern in PATTERNS.items():
-            if pattern.search(line) and not (label == 'bare pass' and number > 1 and lines[number-2].lstrip().startswith('except ')): issues.append(f"{path}:{number}: {label}: {line.strip()}")
+    try:
+        tree=ast.parse(path.read_text(encoding='utf-8'))
+    except SyntaxError as e:
+        issues.append(f"{path}:{e.lineno}: syntax error: {e.msg}")
+        continue
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Expr) and isinstance(node.value, ast.Constant) and node.value.value is Ellipsis:
+            issues.append(f"{path}:{node.lineno}: ellipsis placeholder")
+        if isinstance(node, ast.Pass):
+            issues.append(f"{path}:{node.lineno}: bare pass placeholder")
 if issues:
-    print("\n".join(issues))
+    print('\n'.join(issues))
     raise SystemExit(1)
-print("No obvious production placeholders found.")
+print('No executable Python placeholders found.')

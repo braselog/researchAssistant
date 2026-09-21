@@ -37,7 +37,7 @@ bash .github/skills/calendar/scripts/calendar-wrapper.sh add \
   --title "Focus: [task]" --date YYYY-MM-DD --start HH:MM --end HH:MM
 ```
 
-Remove the accidental leading `a ` if copying the first example. Prefer `--brief` for reads to avoid loading notes, attendees, and URLs.
+Prefer `--brief` for reads to avoid loading notes, attendees, and URLs.
 
 ## Availability workflow
 
@@ -86,4 +86,4 @@ python3 .github/skills/calendar/scripts/init_config.py
 
 The skill requires macOS Calendar.app and `icalBuddy`. Calendar filters, write calendar, and local/remote mode are configured in `.env`. If a command fails, report the actionable error rather than inferring an empty schedule.
 
-For setup, remote access, troubleshooting, output examples, and the full command reference, read [usage-guide.md](references/usage-guide.md). The original detailed instructions are preserved in [original-guidance.md](references/original-guidance.md).
+For setup, remote access, troubleshooting, output examples, and the full command reference, read [usage-guide.md](references/usage-guide.md). 

@@ -47,7 +47,10 @@ Use the environment definition included in this repository. Replace the example 
 
 ```bash
 conda env create -f environment.yml
-conda activate [environment-name]
+conda activate research-assistant
+
+# Optional transcription environment
+# conda env create -f environment-transcription.yml
 ```
 
 ### 3. Configure local settings

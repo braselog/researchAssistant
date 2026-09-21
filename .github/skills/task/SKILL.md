@@ -17,5 +17,3 @@ Parse optional `!high` or `!low`, then append the unchanged text as an unchecked
 Preserve stable source references such as `[source: meeting:YYYY-MM-DD-slug]` when supplied by a meeting workflow.
 
 Do not use a fixed time threshold. If an issue already exists, link the task as `[GH-42]` rather than creating a duplicate. Use `manage-github-work` when the user wants the issue created.
-
-See [original guidance](reference/original-guidance.md) for syntax and section formatting.

@@ -21,5 +21,3 @@ Assess mission alignment, major outcomes, opportunity cost across projects, recu
 ```
 
 Record approved strategic choices with `record-decision` and link affected projects/issues. Save under `~/.researchAssistant/quarterly/`. Never update the research mission without explicit approval.
-
-See [original guidance](reference/original-guidance.md) for reflective prompts and privacy expectations.

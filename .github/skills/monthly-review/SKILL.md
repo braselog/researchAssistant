@@ -22,5 +22,3 @@ Do not use arbitrary completion percentages, commit targets, or activity counts 
 ## Deliverable status
 ## Next-month priorities
 ```
-
-Save under `.research/logs/monthly/`. Convert only approved follow-up actions into tasks/issues/decision records. See [original guidance](reference/original-guidance.md) for manuscript and pipeline status fields.

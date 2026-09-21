@@ -12,5 +12,3 @@ Do not expand or reinterpret the note. Preserve long notes. Ask for text only wh
 If it clearly describes future work, still record it immediately, then say: `Noted. This may also belong in tasks.md.` Do not create a task without permission.
 
 Notes are evidence for `wrap-up`, reviews, and candidate decisions, but they are not themselves authoritative decisions or tasks.
-
-See [original guidance](reference/original-guidance.md) only for examples and edge cases.
