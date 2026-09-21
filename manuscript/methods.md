@@ -23,7 +23,7 @@ Run /review_script first to ensure code is properly documented.
 ### Data Preprocessing
 
 <!-- Cleaning, filtering, transformation steps -->
-<!-- Reference: pipeline/scripts/[preprocessing_script] -->
+<!-- Reference: scripts/[preprocessing_script] -->
 
 
 ## Analysis Pipeline
@@ -31,7 +31,7 @@ Run /review_script first to ensure code is properly documented.
 ### [Stage 1 Name]
 
 <!-- Description of first analysis stage -->
-<!-- Script: pipeline/scripts/[script_name] -->
+<!-- Script: scripts/[script_name] -->
 <!-- Key parameters: -->
 
 

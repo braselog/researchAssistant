@@ -1,0 +1,25 @@
+{
+    "hooks": {
+        "UserPromptSubmit": [
+            {
+                "type": "command",
+                "command": "python .github/scripts/capture_context.py user-prompt",
+                "timeout": 5
+            }
+        ],
+        "PostToolUse": [
+            {
+                "type": "command",
+                "command": "python .github/scripts/capture_context.py tool-result",
+                "timeout": 5
+            }
+        ],
+        "PreCompact": [
+            {
+                "type": "command",
+                "command": "python .github/scripts/capture_context.py pre-compact",
+                "timeout": 5
+            }
+        ]
+    }
+}

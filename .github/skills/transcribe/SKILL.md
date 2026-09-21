@@ -28,7 +28,7 @@ description: Transcribe audio files from meetings into text documents using Whis
 The command runs:
 
 ```bash
-conda run -n research-assistant python .github/skills/transcribe/scripts/transcribe.py [filename or .research/meetings/audio/]
+conda run -n research-assistant python .ra/skills/transcribe/scripts/transcribe.py [filename or .research/meetings/audio/]
 ```
 
 **Behavior:**

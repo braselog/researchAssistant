@@ -59,7 +59,7 @@ Use this format when documenting experiments, analyses, or pipeline runs:
 [What to do based on these results]
 
 ### Cross-References
-- Related scripts: `pipeline/scripts/[name].py`
+- Related scripts: `scripts/[name].py`
 - Related params: `params.yaml` section `[section]`
 - Related issue: #[issue number]
 ```

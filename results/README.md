@@ -38,7 +38,7 @@ Results are tracked by DVC to ensure reproducibility:
 # In dvc.yaml, reference outputs like:
 stages:
   train:
-    cmd: python pipeline/scripts/train.py
+    cmd: python scripts/train.py
     outs:
       - results/intermediate/models/model.pkl
     metrics:

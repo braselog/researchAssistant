@@ -1,175 +1,107 @@
 ---
 name: wrap-up
-description: End-of-day command to capture what happened, consolidate notes, and set up for tomorrow. Use when the user types /wrap_up, says "end of day", "wrapping up", or "done for the day". Gathers git activity, integrates /note entries, and creates a daily summary in activity.md.
+description: Performs an end-of-day reconciliation of conversations, repository activity, tasks, decisions, GitHub work, and documentation. Use for /wrap_up at the end of the research day or before an extended break.
 ---
 
-# End of Day Wrap-up
+# End-of-day wrap-up
 
-> End-of-day command to capture what happened, consolidate notes, and set up for tomorrow.
+Use this as the daily consolidation point. It should preserve meaningful project context without turning every conversation or tool action into permanent documentation.
 
-## When to Use
-- End of a work session
-- End of the day
-- When switching contexts for a while
-- RA may suggest this after 4pm based on user preferences
+## Gather evidence
 
-## Execution Steps
+Read as relevant:
 
-### 1. Gather Today's Context
+- today's files in `.research/context/daily/`;
+- today's entry in `.research/logs/activity.md`;
+- `git status --short`, `git diff --stat`, and today's commits;
+- changed scripts, configuration, DVC files, analyses, results, figures, manuscript files, and documentation;
+- `tasks.md`;
+- related GitHub issues and pull requests;
+- active records in `.research/decisions/`;
+- today's meeting transcripts and summaries.
 
-**Check git activity:**
-```bash
-# Files changed today
-git diff --stat
+Treat daily context entries as candidates, not authoritative project state.
 
-# Commits made today
-git log --oneline --since="midnight" --author="$(git config user.name)"
+## Reconcile the daily context inbox
 
-# Uncommitted changes
-git status --short
-```
+For each candidate entry:
 
-**Read existing context:**
-- `.research/logs/activity.md` - Check for any `/note` entries from today
-- `tasks.md` - Check for completed tasks today
-- Recent file modifications in key directories (`scripts/`, `manuscript/`, `data/`)
+1. Compare it with later conversation, repository evidence, tool outcomes, and existing project records.
+2. Discard routine discussion, duplicates, rejected suggestions, and superseded interpretations.
+3. Preserve the final accepted interpretation when later conversation corrects an earlier statement.
+4. Verify claims about completed work against repository or tool evidence.
+5. Ask only when ambiguity could materially change the durable record.
 
-### 2. Check for Today's Notes
+Do not turn an agent suggestion into a task unless the user accepted it or it follows directly from verified incomplete work.
 
-Look for entries in `activity.md` that match today's date pattern `## [YYYY-MM-DD]`.
+## Route durable information
 
-If notes exist:
-- Extract them to integrate into the full summary
-- These become the seed for the "Notes" section
+- Lightweight personal action -> `tasks.md`
+- Substantial repository or multi-session work -> GitHub issue
+- Consequential scientific, analytical, or technical choice -> `.research/decisions/`
+- Verified completed work -> `.research/logs/activity.md`
+- Unresolved but durable project context -> an appropriate project note
+- Implemented setup or structural change -> README or project documentation
 
-### 3. Draft Activity Entry
+Preserve stable meeting source IDs and links to relevant aims, issues, decisions, files, outputs, and transcript paths. Do not create or materially update remote GitHub items without explicit approval.
 
-Generate a draft using the Quick Session Entry template:
+## Reconcile repository state
+
+1. Identify which tasks, issues, aims, and decisions today's changes addressed.
+2. Distinguish work attempted, implemented, tested, and scientifically verified.
+3. Propose closing or updating work only when its intended behaviour or acceptance criteria were checked.
+4. Identify consequential choices that need decision records.
+5. Flag code or parameter changes that may have made DVC outputs, methods, results, figures, captions, or `.research/traceability/manuscript-evidence.md` stale.
+6. Preserve unresolved questions and identify the first useful next action.
+
+## Draft the activity entry
+
+Use this compact structure:
 
 ```markdown
-## [YYYY-MM-DD]
+## YYYY-MM-DD
 
-**Session focus**: [Inferred from git commits and file changes]
-
-**Accomplished**:
-- [Generated from git commits]
-- [Generated from file changes]
-- [Any completed tasks from tasks.md]
-
-**Decisions made**:
-- [Ask user if not apparent]
-
-**Next steps**:
-- [Suggest based on context]
-
-**Notes**:
-- [Integrate any /note entries from today]
-- [Any observations from the work]
-```
-
-### 4. Present Draft to User
-
-Show the draft and ask:
-
-```
-Here's a summary of today's work:
-
-[DRAFT ENTRY]
-
----
-
-**Anything to add or change?**
-- Decisions you made?
-- Challenges you hit?
-- Thoughts for tomorrow?
-
-(Or say "looks good" to save as-is)
-```
-
-### 5. Integrate User Feedback
-
-If user provides additional input:
-- Incorporate their comments into appropriate sections
-- Add any mentioned decisions to "Decisions made"
-- Add any mentioned challenges to "Notes"
-- Update "Next steps" if they specify priorities
-
-### 6. Save Entry
-
-Prepend the final entry to `.research/logs/activity.md`:
-- Add after the templates section (after the `---` separator following "Digital Documentation Standards")
-- Ensure proper formatting with blank lines
-
-### 7. Offer Follow-up Actions
-
-```
-Entry saved! Before you go:
-
-A) Commit your changes? [if uncommitted work exists]
-B) Update tasks.md? [if accomplishments suggest completed tasks]
-C) All set - see you next time!
-```
-
-## Example Output
-
-```
-📝 Wrapping up your day...
-
-Based on your git activity and file changes, here's today's summary:
-
----
-
-## 2024-12-02
-
-**Session focus**: Pipeline development - preprocessing stage
+**Session focus**: [one sentence]
 
 **Accomplished**:
-- Added data validation script (`scripts/validate_input.py`)
-- Fixed edge case in preprocessing (commit: "handle empty rows")
-- Updated params.yaml with new threshold values
+- [verified outcome]
 
 **Decisions made**:
-- [None detected - any decisions to note?]
+- [DNNNN] [decision and rationale, if applicable]
+
+**Tracking updates**:
+- [task/GH-N] [status or proposed update]
 
 **Next steps**:
-- Run full pipeline with new validation
-- Review output quality metrics
+- [small actionable next step]
 
 **Notes**:
-- From earlier: "Realized the preprocessing step might be dropping too many samples"
-
----
-
-**Anything to add or change?**
+- [unresolved observation or question]
 ```
 
-## Edge Cases
+Preserve useful notes already recorded today and avoid duplicate entries. Do not infer accomplishments, time spent, productivity, or motivation from timestamps or commit counts.
 
-### No git activity today
-```
-I don't see any git commits or file changes today. 
+## Apply and archive
 
-Did you work on something outside this project, or would you like to 
-log some notes about planning/thinking work?
-```
+1. Present proposed GitHub changes or ambiguous durable records for approval.
+2. Apply approved local updates.
+3. Append or update today's activity entry.
+4. Move each processed daily inbox file to `.research/context/archive/`.
+5. Include the processing time in the archive filename so a second `/wrap_up` on the same date cannot overwrite it:
 
-### User says "nothing to add"
-Save the draft as-is with a confirmation:
-```
-Saved! Your next session will pick up right where you left off.
-```
+   `.research/context/archive/YYYY-MM-DD-HHMM.jsonl`
 
-### Very short session
-If minimal activity, offer a simpler format:
-```
-Looks like a lighter session. Quick note instead of full entry?
+6. Do not delete archived context automatically.
+7. If some candidates remain unresolved, copy only those entries into a new daily file and mark them clearly as unresolved.
 
-> [User provides brief note]
+## Final response
 
-Got it, added to today's log.
-```
+Report briefly:
 
-## Related Skills
-- `note` - Add quick thoughts during the day (integrated by /wrap_up)
-- `next` - Start of session, will reference this entry
-- `weekly-review` - Aggregates these daily entries
+- **Logged:** durable activity and decisions recorded
+- **Tracking:** tasks or GitHub updates applied or awaiting approval
+- **Staleness:** outputs or documentation that may need regeneration
+- **Unresolved:** context carried forward
+- **Next:** the first recommended action
+
+Do not add a full narrative when nothing substantial occurred.

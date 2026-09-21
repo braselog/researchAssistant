@@ -244,3 +244,18 @@ Any figures missing captions?
 - Every figure should be referenced at least once
 - Numbers in text must match numbers in figures exactly
 - Lead with findings, not methods
+
+
+## Reproducibility gate and evidence map
+Before updating manuscript text, determine whether the relevant DVC stages and source outputs are current. Check `dvc status` when DVC is configured and inspect the actual dependency chain. If required outputs are stale, missing, or not reproducible from the recorded pipeline, do not describe them as current results or finalized methods. Report the affected stage and recommend reproduction first.
+
+Maintain `.research/traceability/manuscript-evidence.md`. Create it if absent and update only the claims touched by the current writing task. Use stable, repository-relative paths and specific rows, keys, figure panels, parameters, stages, or line ranges when available:
+
+```markdown
+| Manuscript section or claim | Evidence source | Pipeline state | Last verified |
+|---|---|---|---|
+| Donor-level splitting was used | `scripts/create_splits.py`; `params.yaml:splits` | `prepare_splits` current | YYYY-MM-DD |
+| Model A improved AUROC by 0.06 | `results/model_metrics.csv`, comparison row | `evaluate_models` current | YYYY-MM-DD |
+```
+
+The evidence map is an internal traceability artifact, not manuscript prose. Never add a claim to it without checking the cited source.

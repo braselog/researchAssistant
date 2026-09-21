@@ -130,8 +130,7 @@ models/
 !models/.gitkeep
 
 # DVC
-/dvc.lock
-
+# Commit dvc.lock to capture the reproduced pipeline state
 # Audio files (can be large)
 meetings/*.m4a
 meetings/*.mp3
@@ -149,3 +148,7 @@ secrets/
 tmp/
 temp/
 *.tmp
+
+# Tmp Context files
+.research/context/daily/
+.research/context/archive/

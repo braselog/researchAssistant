@@ -1,228 +1,271 @@
-# Project Title
+# [Project title]
 
-> A reproducible research project powered by the Research Assistant (RA)
+[One-sentence description of the research question, system, dataset, and intended contribution.]
 
-[![DVC](https://img.shields.io/badge/DVC-tracked-blue)](https://dvc.org)
-[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+## Project Status
 
-## Quick Start
+- **Research aim:** [AIM-1 or concise aim]
+- **Current stage:** [Setup / Planning / Development / Analysis / Writing / Review]
+- **Target output:** [Journal article / Thesis chapter / Software / Dataset / Report]
+- **Primary contact:** [Name and contact]
+- **Last major update:** [YYYY-MM-DD]
 
-1. **Clone this repository**
-   ```bash
-   git clone [repository-url]
-   cd [project-name]
-   ```
+For detailed aims, scope, decisions, and current state, see `.research/project_telos.md`.
 
-2. **Set up environment**
-   ```bash
-   # Create and activate conda environment
-   conda env create -f environment.yml
-   conda activate research-assistant
-   
-   # Copy environment variables template
-   cp .env.example .env
-   # Edit .env to add your HuggingFace token (optional, for speaker diarization)
-   ```
+## Overview
 
-3. **Run the pipeline**
-   ```bash
-   dvc repro
-   ```
+### Research question
 
-4. **Get started with the Research Assistant**
-   Open in VS Code with GitHub Copilot enabled, then type:
-   ```
-   /next
-   ```
+[State the primary question or hypothesis in language understandable to someone in the field who is new to the project.]
 
-## Environment
+### Rationale
 
-This project uses a **conda environment** to ensure all dependencies are available cross-platform.
+[Explain why the question matters, what gap it addresses, and what is distinctive about this project.]
 
-### What's Included
+### Approach
 
-| Package | Purpose |
-|---------|---------|
-| `ffmpeg` | Audio format conversion for transcription |
-| `pytorch` | ML framework for speaker diarization |
-| `dvc` | Data version control and pipelines |
-| `snakemake` | Alternative workflow management |
-| `faster-whisper` | Speech-to-text (99+ languages) |
-| `pyannote.audio` | Speaker diarization (optional) |
+[Summarize the data, experimental or computational design, and major analysis stages.]
 
-### First-Time Model Download
+### Expected outputs
 
-On first use, Whisper models are downloaded automatically (~2GB for `small` model):
+- [Primary scientific output]
+- [Pipeline, model, dataset, or resource]
+- [Manuscript, figures, or report]
+
+## Reproducing the Project
+
+### 1. Clone the repository
 
 ```bash
-# Test transcription (downloads model on first run)
-python tools/transcribe.py --help
+git clone [repository-url]
+cd [project-name]
 ```
 
-## Project Overview
+### 2. Create the environment
 
-**Mission**: [Describe your research question/goal]
+Use the environment definition included in this repository. Replace the example below if this project uses `uv`, `venv`, `renv`, containers, or another system.
 
-**Status**: [Current phase: SETUP / PLANNING / DEVELOPMENT / ANALYSIS / WRITING / REVIEW]
+```bash
+conda env create -f environment.yml
+conda activate [environment-name]
+```
 
-**Target Output**: [Journal paper / Thesis chapter / Tool]
+### 3. Configure local settings
+
+```bash
+cp .env.example .env
+```
+
+Add only required local paths, tokens, or service settings. Never commit `.env`.
+
+### 4. Obtain the data
+
+If data are managed through a DVC remote:
+
+```bash
+dvc pull
+```
+
+Otherwise, follow the access instructions in [Data](#data). Restricted data are not included in the repository.
+
+### 5. Reproduce the pipeline
+
+```bash
+dvc status
+dvc repro
+```
+
+Inspect tracked metrics where applicable:
+
+```bash
+dvc metrics show
+```
+
+### 6. Run validation
+
+```bash
+[project test command]
+[project lint or validation command]
+```
+
+A clean pipeline execution should produce the outputs described under [Outputs](#outputs). Any external services, hardware requirements, or non-deterministic stages should be documented below.
+
+## Pipeline
+
+The implemented workflow is defined in `dvc.yaml`, with parameters in `params.yaml` and reproduced state in `dvc.lock`.
+
+| Stage | Purpose | Main inputs | Main outputs |
+|---|---|---|---|
+| `[stage-name]` | [What the stage does] | `[input paths]` | `[output paths]` |
+| `[stage-name]` | [What the stage does] | `[input paths]` | `[output paths]` |
+
+Update this table when the high-level workflow changes. Detailed implementation belongs in code, configuration, and `manuscript/methods.md`.
+
+## Data
+
+### Sources
+
+| Dataset | Source | Access | Version or date |
+|---|---|---|---|
+| [Dataset] | [Repository, consortium, or experiment] | [Public / controlled / local] | [Version/date] |
+
+### Data organization
+
+```text
+data/
+├── raw/          # Original, immutable inputs
+├── processed/    # Derived or cleaned data
+└── .sensitive/   # Restricted local data, excluded from Git and Copilot
+```
+
+### Governance and restrictions
+
+[Describe consent, licenses, data-use agreements, access controls, de-identification, or restrictions relevant to reuse. Do not place sensitive details or credentials in this file.]
 
 ## Repository Structure
 
-```
+```text
 .
-├── .ra/
-│   ├── copilot-instructions.md   # Research Assistant configuration
-│   ├── commands/                 # Slash command definitions
-│   └── tools/                    # RA utilities (transcribe.py, etc.)
+├── .github/
+│   ├── copilot-instructions.md       # Research Assistant behaviour
+│   ├── hooks/                        # Agent lifecycle hooks
+│   ├── scripts/                      # Hook and validation scripts
+│   └── skills/                       # Research workflows
 ├── .research/
-│   ├── project_telos.md          # Project aims and state
-│   ├── phase_checklist.md        # Progress tracking
-│   ├── literature/               # Literature reviews and citations
-│   ├── meetings/                 # Meeting recordings and transcripts
-│   │   ├── audio/                # Audio files (.m4a, .mp3, .wav)
-│   │   └── transcripts/          # Transcript markdown files
-│   └── logs/                     # Activity and review logs
-├── data/
-│   ├── raw/                      # Original, immutable data
-│   ├── processed/                # Cleaned/transformed data
-│   └── .sensitive/               # Private data (not tracked)
-├── scripts/                      # Analysis and utility scripts
-├── results/                      # Pipeline outputs and metrics
-│   ├── intermediate/             # Intermediate stage outputs
-│   ├── final/                    # Final analysis results
-│   ├── metrics/                  # DVC-tracked metrics
-│   └── logs/                     # Execution logs
+│   ├── project_telos.md              # Aims, scope, and current state
+│   ├── phase_checklist.md            # Phase-oriented progress guide
+│   ├── decisions/                    # Scientific and technical decisions
+│   ├── literature/                   # Literature outputs and citations
+│   ├── meetings/                     # Meeting audio, transcripts, summaries
+│   ├── traceability/                 # Evidence underlying manuscript claims
+│   └── logs/                         # Activity and periodic reviews
+├── data/                              # Raw and derived data
+├── scripts/                           # Analysis and pipeline code
+├── tests/                             # Automated validation
+├── results/
+│   ├── intermediate/
+│   ├── final/
+│   ├── metrics/
+│   └── logs/
 ├── manuscript/
 │   ├── background.md
 │   ├── methods.md
 │   ├── results.md
 │   ├── discussion.md
-│   └── figures/                  # Figures with captions
-├── dvc.yaml                      # Pipeline definition
-├── params.yaml                   # Pipeline parameters
-├── tasks.md                      # Current tasks
-└── README.md                     # This file
+│   └── figures/
+├── dvc.yaml
+├── dvc.lock
+├── params.yaml
+└── tasks.md
 ```
+
+Adjust this section to reflect the actual repository rather than preserving unused template directories.
+
+## Outputs
+
+| Output | Location | Description |
+|---|---|---|
+| [Primary result] | `results/final/[file]` | [Description] |
+| [Figure set] | `manuscript/figures/` | [Description] |
+| [Model or resource] | `[path]` | [Description] |
+
+For manuscript traceability, `.research/traceability/manuscript-evidence.md` links important methods and claims to source code, parameters, DVC stages, outputs, and figures.
+
+## Key Decisions and Limitations
+
+Consequential decisions are recorded under `.research/decisions/`. Summarize only the decisions readers need to understand the project:
+
+- [Decision and concise rationale]
+- [Known limitation or trade-off]
+- [Condition that would require reassessment]
 
 ## Using the Research Assistant
 
-This project template includes context files that guide VS Code's GitHub Copilot to act as a Research Assistant (RA). The RA helps you:
+This repository includes VS Code GitHub Copilot instructions, Agent Skills, and optional hooks that provide project-aware research support.
 
-- **Stay on track**: Guides you through research phases
-- **Write better**: Drafts manuscript sections from your work
-- **Stay organized**: Tracks tasks and action items
-- **Stay reproducible**: Ensures proper documentation
+Useful entry points:
 
-### Key Commands
-
-| Command | Purpose |
-|---------|---------|
-| `/next` | Get suggested next steps (catch-all for beginners) |
-| `/deep_research [topic]` | Literature search with citations |
-| `/write_background` | Draft background from literature |
-| `/write_methods` | Document scripts as methods |
-| `/write_results` | Draft results from figures |
-| `/review_script [path]` | Check code documentation |
-| `/weekly_review` | Weekly progress review |
-| `/plan_week` | Create weekly plan |
-| `/transcribe [file]` | Transcribe meeting audio |
-| `/summarize_meeting [file]` | Extract action items |
-
-### Transcribing Meetings
-
-Record meetings and transcribe them for documentation:
-
-```bash
-# Transcribe a recording
-python tools/transcribe.py meetings/recording.m4a
-
-# Or use VS Code chat command
-/transcribe meetings/recording.m4a
-
-# Use larger model for better accuracy
-python tools/transcribe.py --model large-v3 meetings/recording.m4a
+```text
+/next                         Assess project state and recommend next actions
+/plan_week                    Build a calendar-aware weekly plan
+/wrap_up                      Reconcile daily context and project state
+/summarize_meeting [file]     Extract meeting decisions and actions
+/review_script [path]         Review code and analytical reliability
+/write_methods                Draft methods from implementation and DVC state
+/write_results                Draft results from current outputs and figures
+/weekly_review                Review weekly progress and blockers
 ```
 
-**Speaker Diarization**: To identify who is speaking, set up a HuggingFace token. See `tools/README.md` for instructions.
+The assistant treats:
 
-### Getting Started
+- `tasks.md` as the lightweight personal action queue;
+- GitHub issues as substantial repository work;
+- `.research/decisions/` as durable rationale;
+- meeting and activity logs as historical evidence;
+- DVC and computed outputs as the source of truth for reproducibility;
+- `.research/traceability/manuscript-evidence.md` as the internal evidence map for manuscript claims.
 
-1. Open VS Code with GitHub Copilot enabled
-2. Type `/next` in the chat
-3. Follow the RA's guidance to set up your project
+Temporary context captured during Copilot sessions is reconciled by `/wrap_up` and should not be committed as authoritative project documentation.
 
-## Reproducing This Work
+## Development and Contribution
 
-### Prerequisites
+### Branching and review
 
-- [Conda](https://docs.conda.io/en/latest/miniconda.html) (Miniconda or Anaconda)
-- Git
-- (Optional) NVIDIA GPU with CUDA for faster transcription
+[Describe the branch naming, pull-request, review, and merge conventions used by the project.]
 
-### Full Reproduction
+### Quality checks
 
-```bash
-# Clone and enter repository
-git clone [repository-url]
-cd [project-name]
-
-# Set up environment
-conda env create -f environment.yml
-conda activate research-assistant
-
-# Copy environment config
-cp .env.example .env
-
-# Pull data (if using DVC remote)
-dvc pull
-
-# Run complete pipeline
-dvc repro
-
-# Figures will be generated in manuscript/figures/
-```
-
-### Verify Outputs
+Before submitting changes:
 
 ```bash
-# Check pipeline status
+[project formatting command]
+[project lint command]
+[project test command]
 dvc status
-
-# Compare metrics
-dvc metrics show
 ```
 
-## Data
+Substantial changes should link to the relevant GitHub issue and, where appropriate, a decision record.
 
-**Source**: [Describe where data comes from]
+### Reporting problems
 
-**Access**: [How to obtain the data]
+Use GitHub issues for reproducible bugs, substantial analysis changes, or work requiring discussion and review. Use `tasks.md` for lightweight personal actions.
 
-**Sensitive data**: Files in `data/.sensitive/` are not tracked and must be obtained separately.
+## Results and Manuscript
+
+- **Methods:** `manuscript/methods.md`
+- **Results:** `manuscript/results.md`
+- **Figures:** `manuscript/figures/`
+- **Evidence map:** `.research/traceability/manuscript-evidence.md`
+- **Current manuscript status:** [Drafting / Internal review / Submitted / Published]
+
+Do not report results in this README unless they are stable, current, and supported by reproduced outputs.
 
 ## Citation
 
-If you use this work, please cite:
+If this repository or its outputs are used, cite:
 
 ```bibtex
-@article{author2024title,
-  author = {Author, First and Author, Second},
-  title = {Title of the Paper},
-  journal = {Journal Name},
-  year = {2024},
-  doi = {10.xxxx/xxxxx}
+@article{[citation-key],
+  author  = {[Authors]},
+  title   = {[Title]},
+  journal = {[Journal]},
+  year    = {[Year]},
+  doi     = {[DOI]}
 }
 ```
 
+For software or datasets, add the appropriate DOI, release, archived repository, or citation file.
+
 ## License
 
-[Choose appropriate license]
+[Specify the software, data, and documentation licenses. Note any components governed by separate terms.]
 
 ## Contact
 
-[Your name and contact information]
+[Name]  
+[Institution or group]  
+[Email or project contact]
 
 ---
 
-*This project uses the [Research Assistant Template](https://github.com/[link-to-template])*
+This project was initialized from the Research Assistant Template. Remove this note if it is not useful to project readers.

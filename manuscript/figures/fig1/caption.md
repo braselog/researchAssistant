@@ -30,7 +30,7 @@ Caption format:
 ## Files
 
 - **Figure file**: fig1.png (or .pdf, .svg)
-- **Source script**: pipeline/scripts/[script_name].py
+- **Source script**: scripts/[script_name].py
 - **Source data**: data/processed/[data_file]
 
 ## Notes

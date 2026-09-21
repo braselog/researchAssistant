@@ -60,10 +60,10 @@ stages:
 
   # Example: Generate figures
   # figures:
-  #   cmd: python pipeline/scripts/figures.py
+  #   cmd: python scripts/figures.py
   #   deps:
   #     - data/processed/results.csv
-  #     - pipeline/scripts/figures.py
+  #     - scripts/figures.py
   #   plots:
   #     - manuscript/figures/fig1/fig1.png
 

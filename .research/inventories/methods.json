@@ -1,0 +1,285 @@
+{
+  "generated_at": "2026-07-29T10:43:13+01:00",
+  "git_commit": "32f378181259caf4b94d476eb17f5ef8a8011e3f",
+  "scripts": [],
+  "dvc_keys": [
+    {
+      "line": 5,
+      "indent": 0,
+      "key": "stages",
+      "value": ""
+    }
+  ],
+  "parameter_keys": [
+    {
+      "line": 6,
+      "indent": 0,
+      "key": "project",
+      "value": ""
+    },
+    {
+      "line": 7,
+      "indent": 2,
+      "key": "name",
+      "value": "\"my-research-project\""
+    },
+    {
+      "line": 8,
+      "indent": 2,
+      "key": "version",
+      "value": "\"0.1.0\""
+    },
+    {
+      "line": 9,
+      "indent": 2,
+      "key": "random_seed",
+      "value": "42"
+    },
+    {
+      "line": 12,
+      "indent": 0,
+      "key": "preprocess",
+      "value": ""
+    },
+    {
+      "line": 13,
+      "indent": 2,
+      "key": "threshold",
+      "value": "0.5"
+    },
+    {
+      "line": 14,
+      "indent": 2,
+      "key": "normalize",
+      "value": "true"
+    },
+    {
+      "line": 15,
+      "indent": 2,
+      "key": "remove_outliers",
+      "value": "true"
+    },
+    {
+      "line": 16,
+      "indent": 2,
+      "key": "outlier_std",
+      "value": "3.0"
+    },
+    {
+      "line": 17,
+      "indent": 2,
+      "key": "min_samples",
+      "value": "10"
+    },
+    {
+      "line": 20,
+      "indent": 0,
+      "key": "features",
+      "value": ""
+    },
+    {
+      "line": 21,
+      "indent": 2,
+      "key": "method",
+      "value": "\"pca\"  # pca, umap, none"
+    },
+    {
+      "line": 22,
+      "indent": 2,
+      "key": "n_components",
+      "value": "50"
+    },
+    {
+      "line": 23,
+      "indent": 2,
+      "key": "scale",
+      "value": "true"
+    },
+    {
+      "line": 26,
+      "indent": 0,
+      "key": "train",
+      "value": ""
+    },
+    {
+      "line": 27,
+      "indent": 2,
+      "key": "model_type",
+      "value": "\"random_forest\"  # random_forest, svm, logistic"
+    },
+    {
+      "line": 28,
+      "indent": 2,
+      "key": "test_size",
+      "value": "0.2"
+    },
+    {
+      "line": 29,
+      "indent": 2,
+      "key": "cv_folds",
+      "value": "5"
+    },
+    {
+      "line": 32,
+      "indent": 2,
+      "key": "random_forest",
+      "value": ""
+    },
+    {
+      "line": 33,
+      "indent": 4,
+      "key": "n_estimators",
+      "value": "100"
+    },
+    {
+      "line": 34,
+      "indent": 4,
+      "key": "max_depth",
+      "value": "10"
+    },
+    {
+      "line": 35,
+      "indent": 4,
+      "key": "min_samples_split",
+      "value": "5"
+    },
+    {
+      "line": 37,
+      "indent": 2,
+      "key": "svm",
+      "value": ""
+    },
+    {
+      "line": 38,
+      "indent": 4,
+      "key": "kernel",
+      "value": "\"rbf\""
+    },
+    {
+      "line": 39,
+      "indent": 4,
+      "key": "C",
+      "value": "1.0"
+    },
+    {
+      "line": 40,
+      "indent": 4,
+      "key": "gamma",
+      "value": "\"scale\""
+    },
+    {
+      "line": 42,
+      "indent": 2,
+      "key": "logistic",
+      "value": ""
+    },
+    {
+      "line": 43,
+      "indent": 4,
+      "key": "penalty",
+      "value": "\"l2\""
+    },
+    {
+      "line": 44,
+      "indent": 4,
+      "key": "C",
+      "value": "1.0"
+    },
+    {
+      "line": 45,
+      "indent": 4,
+      "key": "max_iter",
+      "value": "1000"
+    },
+    {
+      "line": 48,
+      "indent": 0,
+      "key": "evaluate",
+      "value": ""
+    },
+    {
+      "line": 49,
+      "indent": 2,
+      "key": "metrics",
+      "value": ""
+    },
+    {
+      "line": 55,
+      "indent": 2,
+      "key": "confidence_level",
+      "value": "0.95"
+    },
+    {
+      "line": 56,
+      "indent": 2,
+      "key": "n_bootstrap",
+      "value": "1000"
+    },
+    {
+      "line": 59,
+      "indent": 0,
+      "key": "figures",
+      "value": ""
+    },
+    {
+      "line": 60,
+      "indent": 2,
+      "key": "dpi",
+      "value": "300"
+    },
+    {
+      "line": 61,
+      "indent": 2,
+      "key": "format",
+      "value": "\"png\"  # png, pdf, svg"
+    },
+    {
+      "line": 62,
+      "indent": 2,
+      "key": "style",
+      "value": "\"seaborn-v0_8-whitegrid\""
+    },
+    {
+      "line": 63,
+      "indent": 2,
+      "key": "figsize",
+      "value": ""
+    },
+    {
+      "line": 64,
+      "indent": 4,
+      "key": "width",
+      "value": "8"
+    },
+    {
+      "line": 65,
+      "indent": 4,
+      "key": "height",
+      "value": "6"
+    },
+    {
+      "line": 66,
+      "indent": 2,
+      "key": "colors",
+      "value": ""
+    },
+    {
+      "line": 67,
+      "indent": 4,
+      "key": "primary",
+      "value": "\"#1f77b4\""
+    },
+    {
+      "line": 68,
+      "indent": 4,
+      "key": "secondary",
+      "value": "\"#ff7f0e\""
+    },
+    {
+      "line": 69,
+      "indent": 4,
+      "key": "tertiary",
+      "value": "\"#2ca02c\""
+    }
+  ]
+}
