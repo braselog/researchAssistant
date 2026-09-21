@@ -1,160 +1,216 @@
-# Research Assistant Template
+# Research Assistant
 
-> A cloneable project template that transforms VS Code + GitHub Copilot into a domain-specific Research Assistant (RA) for computational researchers.
+This repository is a project-aware research workflow for VS Code and GitHub Copilot. It combines project context, reusable Agent Skills, reproducibility conventions, manuscript templates, and lightweight project tracking. It is not a standalone application or VS Code extension.
 
-## What Is This?
+The assistant uses the files in this repository to help with planning, literature and data work, analysis documentation, manuscript drafting, meetings, and periodic project reviews. Its outputs should remain grounded in the project files and computed results.
 
-This is not a standalone tool or extension. It's a **project template** containing context files, slash commands, and configuration that guide VS Code's GitHub Copilot to behave as a specialized research assistant.
+## Current State
 
-Clone this template for each new research project. The RA will:
-- Guide you through research phases (planning → development → analysis → writing)
-- Help write manuscript sections from your actual code and data
-- Ensure reproducibility through proper documentation and DVC pipelines
-- Track tasks and action items from meetings
-- Conduct regular reviews to keep you on track
+This checkout is an initial research-project scaffold in the `SETUP` phase:
+
+- Project aims and metadata in `.research/project_telos.md` are still placeholders.
+- `scripts/` and `tests/` contain placeholders but no project-specific implementation yet.
+- `dvc.yaml` contains commented example stages; there is no active pipeline to reproduce.
+- `params.yaml` contains example analysis parameters that should be replaced with project-specific configuration.
+- Manuscript files and figure captions are starting templates.
+
+Treat the repository as a foundation for a real project. Do not interpret the example parameters or manuscript text as analysis results.
 
 ## Quick Start
 
+### Requirements
+
+- macOS or Linux
+- VS Code with GitHub Copilot enabled
+- Git
+- Conda or another Python environment manager
+- Python 3.11 for the supplied environment and CI checks
+
+### Create the environment
+
 ```bash
-# Clone the template
-git clone https://github.com/[username]/research-assistant-template my-new-project
-cd my-new-project
+conda env create -f environment.yml
+conda activate research-assistant
+```
 
-# Remove template's git history
-rm -rf .git
-git init
+The environment includes Python, DVC, common scientific Python packages, audio tooling, and optional transcription/diarization dependencies. Some features require additional local configuration, such as a Hugging Face token for speaker diarization.
 
-# Open in VS Code
+### Configure local settings
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` only when using optional integrations such as transcription, speaker diarization, calendar access, local LLM summarization, or GitHub project synchronization. `.env` is ignored by Git and must not contain values that are committed or copied into documentation.
+
+### Open the project
+
+```bash
 code .
 ```
 
-Then open GitHub Copilot Chat and type:
-```
+Open GitHub Copilot Chat and start with:
+
+```text
 /next
 ```
 
-The RA will guide you through setup.
+`/next` reads the current project state and recommends the highest-value next actions. Before analysis work, update `.research/project_telos.md` and `.research/phase_checklist.md` with the actual research question, aims, and phase.
 
-## Core Philosophy
+## How It Works
 
-**"Feed the Beast"** - The RA is only as good as the context you give it.
+The assistant has three context layers:
 
-This template provides:
-- **Context files** that tell the RA about your project and preferences
-- **Slash commands** that define specific workflows
-- **Templates** for manuscript sections, figure captions, and reviews
-- **Phase gates** that prevent skipping critical reproducibility steps
+1. **Repository instructions** in `.github/copilot-instructions.md` define the research workflow, reliability expectations, and project-state conventions.
+2. **Reusable skills** in `.github/skills/` provide focused workflows for literature, data, statistics, visualization, writing, meetings, planning, reviews, and project coordination.
+3. **Project state** in `.research/`, `tasks.md`, `manuscript/`, `data/`, and `results/` supplies the evidence specific to this project.
 
-## Key Features
+The researcher profile template in `researcher_telos_template.md` is intended to become the user-level file `~/.researchAssistant/researcher_telos.md`. It stores preferences that can be shared across projects; project aims belong in `.research/project_telos.md`.
 
-### 🎯 Phase-Based Guidance
-Projects progress through: SETUP → PLANNING → DEVELOPMENT → ANALYSIS → WRITING → REVIEW
+## Available Workflows
 
-The RA tracks where you are and won't let you skip critical steps.
+Use the command name with underscores in Copilot Chat. Each command is implemented by the corresponding skill directory.
 
-### 📝 Manuscript Integration
-Write your methods section as you code. Generate results from figures. Draft background from literature reviews.
+### Project state and planning
 
-### 🔍 Literature Research
-Deep research with verified citations. No hallucinated references.
+| Command                 | Purpose                                                        |
+| ----------------------- | -------------------------------------------------------------- |
+| `/next`                 | Assess project state and recommend next actions.               |
+| `/task [description]`   | Add a lightweight task to `tasks.md`.                          |
+| `/plan_week`            | Build a focused, calendar-aware weekly plan.                   |
+| `/calendar [request]`   | View schedules, find availability, or add approved work blocks |
+| `/wrap_up`              | Reconcile the current session with project state.              |
+| `/weekly_review`        | Review weekly progress, blockers, and tracking.                |
+| `/monthly_review`       | Review progress against aims and deliverables.                 |
+| `/quarterly_review`     | Review mission, portfolio, and strategic priorities.           |
+| `/sync_project_state`   | Reconcile tasks, decisions, logs, outputs, and GitHub context. |
+| `/project_health_check` | Detect stale, inconsistent, or weakly tracked work.            |
+| `/record_decision`      | Record a consequential scientific or technical decision.       |
+| `/manage_github_work`   | Maintain research-aware GitHub issue and pull-request context. |
 
-### 📋 Task Management
-Extract action items from meeting transcripts. Route to tasks.md or GitHub Issues based on complexity.
+### Research and analysis
 
-### 📊 Regular Reviews
-Weekly project check-ins. Monthly alignment checks. Quarterly mission reviews.
+| Command                                | Purpose                                                       |
+| -------------------------------------- | ------------------------------------------------------------- |
+| `/deep_research [topic]`               | Search and synthesize literature with verified citations.     |
+| `/literature_review [topic]`           | Conduct a documented, multi-source literature review.         |
+| `/exploratory_data_analysis [path]`    | Inspect data structure, quality, distributions, and patterns. |
+| `/statistical_analysis [question]`     | Plan or perform an appropriate statistical analysis.          |
+| `/hypothesis_generation [observation]` | Generate testable hypotheses and predictions.                 |
+| `/scientific_visualization [request]`  | Create publication-quality scientific figures.                |
+| `/peer_review [document]`              | Evaluate scientific, statistical, and reporting quality.      |
 
-## Commands
+### Manuscript and meeting support
 
-| Command | Purpose |
-|---------|---------|
-| `/next` | **Start here.** Get suggested next steps based on project state. |
-| `/deep_research [topic]` | Literature search with verified citations |
-| `/write_background` | Draft background section from literature |
-| `/write_methods` | Generate methods from documented scripts |
-| `/write_results` | Draft results from figures and captions |
-| `/review_script [path]` | Check code documentation quality |
-| `/weekly_review` | Weekly progress review |
-| `/monthly_review` | Monthly alignment check |
-| `/quarterly_review` | Quarterly mission review |
-| `/plan_week` | Create focused weekly plan |
-| `/transcribe [file]` | Transcribe meeting audio |
-| `/summarize_meeting [file]` | Extract action items from transcript |
+| Command                         | Purpose                                                        |
+| ------------------------------- | -------------------------------------------------------------- |
+| `/write_background`             | Draft the background from the project's literature files.      |
+| `/write_methods`                | Document methods from the implemented pipeline and parameters. |
+| `/write_results`                | Draft results from current figures and captions.               |
+| `/scientific_writing [request]` | Improve or draft scientific manuscript text.                   |
+| `/review_script [path]`         | Review a script for documentation and reproducibility.         |
+| `/transcribe [file]`            | Transcribe meeting audio with Whisper.                         |
+| `/summarize_meeting [file]`     | Extract meeting decisions, actions, and open questions.        |
+| `/note [observation]`           | Record a timestamped observation in the activity log.          |
 
-## Directory Structure
+### Calendar integration
 
-```
-├── .ra/                               # RA tool framework
-│   ├── copilot-instructions.md        # RA brain and personality
-│   ├── commands/                      # Slash command definitions
-│   └── tools/                         # RA utilities (transcribe.py, etc.)
+The calendar skill can read calendars visible in macOS Calendar, including iCloud, Exchange/Outlook, and Google calendars. It can show schedules, check availability, and propose research blocks. Adding, moving, or changing an event always requires explicit approval. Calendar configuration and the required wrapper commands are documented in [the calendar skill](.github/skills/calendar/SKILL.md).
+
+## Repository Structure
+
+```text
+.
+├── .github/
+│   ├── copilot-instructions.md       # Research Assistant behaviour and rules
+│   ├── hooks/                        # Context-capture hook configuration
+│   ├── scripts/                      # Placeholder audits and context capture
+│   ├── skills/                       # Reusable research workflows
+│   └── workflows/quality.yml         # CI: audit, Ruff, and pytest
 ├── .research/
-│   ├── project_telos.md               # Your project's aims and state
-│   ├── phase_checklist.md             # Progress tracking
-│   ├── literature/                    # Research outputs with citations
-│   ├── meetings/                      # Meeting recordings and transcripts
-│   │   ├── audio/                     # Audio files (.m4a, .mp3, .wav)
-│   │   └── transcripts/               # Transcript markdown files
-│   └── logs/                          # Activity and review logs
+│   ├── audits/                       # Audit outputs
+│   ├── contracts/                    # Project contracts and expectations
+│   ├── inventories/                  # Generated project inventories
+│   ├── literature/                   # Literature files and citations
+│   ├── logs/                         # Activity, weekly, and monthly logs
+│   ├── meetings/                     # Audio and transcript storage
+│   ├── notes/                        # Research notes
+│   ├── phase_checklist.md            # Phase progress and exit criteria
+│   └── project_telos.md              # Aims, scope, risks, and current state
 ├── data/
-│   ├── raw/                           # Immutable source data
-│   ├── processed/                     # Derived data
-│   └── .sensitive/                    # Excluded from AI (IRB data, etc.)
-├── scripts/                           # Your analysis code
-├── manuscript/
-│   ├── background.md
-│   ├── methods.md
-│   ├── results.md
-│   ├── discussion.md
-│   └── figures/                       # Figures with caption files
-├── meetings/                          # Audio files and transcripts
-├── dvc.yaml                           # Reproducible pipeline
-├── params.yaml                        # Pipeline parameters
-├── tasks.md                           # Quick todos
-└── researcher_telos_template.md       # Your profile (moves to ~/.researchAssistant/)
+│   ├── raw/                          # Immutable source data
+│   ├── processed/                    # Derived data
+│   └── README.md                     # Data governance and provenance rules
+├── manuscript/                       # Background, methods, results, discussion
+│   └── figures/                      # Publication figures and captions
+├── results/                          # Generated outputs and metrics
+├── scripts/                          # Project-specific analysis code
+├── tests/                            # Automated validation and fixtures
+├── dvc.yaml                          # Reproducible pipeline stages
+├── environment.yml                   # Conda environment definition
+├── params.yaml                       # Centralized pipeline parameters
+├── PROJECT_README.md                 # Project-specific README template
+├── researcher_telos_template.md      # User profile template
+└── tasks.md                          # Lightweight project task queue
 ```
 
-## Two-Tier Context
+The `data/raw/`, `data/processed/`, and sensitive-data locations are ignored by default. Keep raw data immutable, document provenance, and use DVC or an approved storage system for large or restricted data. Never commit credentials or sensitive research data.
 
-**RA Framework** (`.ra/`):
-- `copilot-instructions.md` - RA brain and personality
-- `commands/` - Slash command definitions
-- `tools/` - RA utilities (transcribe.py, etc.)
-- **Committed to git** - gets cloned with every project
-- **Readable by Copilot** - Copilot needs these to function as RA
-- **Don't modify** - part of the framework you're cloning
+## Reproducibility
 
-**User-level** (`~/.researchAssistant/`):
-- `researcher_telos.md` - Your preferences, productivity patterns, strengths
-- Persists across all projects
-- Set up once, used everywhere
+The intended analysis workflow is:
 
-**Project-level** (`.research/`):
-- `project_telos.md` - This project's aims, phase, goals
-- `phase_checklist.md` - Progress through research phases
-- Specific to each project
+```text
+data/raw/ -> scripts/ -> data/processed/ -> results/ -> manuscript/figures/
+```
 
-## Privacy
+When project-specific scripts exist, define their dependencies, parameters, and outputs in `dvc.yaml`. Keep tunable values in `params.yaml`, document the implementation in `manuscript/methods.md`, and generate results rather than editing them manually.
 
-Sensitive data can be placed in `data/.sensitive/`. This directory is:
-- Listed in `.copilotignore` - AI cannot read these files
-- Listed in `.gitignore` - Files are not committed
+The current repository has no active DVC stages. After adding stages and configuring a DVC remote where needed, the normal commands are:
 
-## Requirements
+```bash
+dvc status
+dvc repro
+dvc metrics show
+```
 
-- VS Code with GitHub Copilot enabled
-- Python 3.10+ (or R, if preferred)
-- DVC for pipeline management
-- Git for version control
+Use `dvc pull` only after a project DVC remote has been configured and data or outputs have been published there.
 
-## Contributing
+## Quality Checks
 
-This template is designed to be forked and customized. If you develop useful commands or improvements, please consider contributing back.
+The GitHub Actions workflow in `.github/workflows/quality.yml` runs on pushes and pull requests:
 
-## License
+```bash
+python .github/scripts/audit_placeholders.py
+ruff check .
+pytest
+```
 
-MIT License - Use freely for your research.
+The placeholder audit is useful during setup because it identifies template content that still needs project-specific values. Install `ruff` and `pytest` in the active environment if they are not already available. Before committing, the configured pre-commit hooks can be run with:
 
----
+```bash
+pre-commit run --all-files
+```
 
-*Inspired by the "Feed the Beast" philosophy and Telos-based context management.*
+## Where to Add Project Content
+
+1. Define the mission, aims, risks, and current phase in `.research/project_telos.md`.
+2. Mark completed setup work in `.research/phase_checklist.md` and keep `tasks.md` focused on short actions.
+3. Replace the placeholders in `PROJECT_README.md` with the project question, data sources, pipeline stages, outputs, and limitations.
+4. Add provenance for every source dataset under `data/raw/`; place derived data under `data/processed/`.
+5. Add documented scripts under `scripts/`, tests under `tests/`, and active stages to `dvc.yaml`.
+6. Keep `manuscript/methods.md`, figures, captions, results, and discussion synchronized with the actual analysis.
+
+## Related Documentation
+
+- [Project README template](PROJECT_README.md)
+- [Research Assistant instructions](.github/copilot-instructions.md)
+- [Phase checklist](.research/phase_checklist.md)
+- [Project aims and state](.research/project_telos.md)
+- [Data management rules](data/README.md)
+- [Results organization](results/README.md)
+- [Script conventions](scripts/README.md)
+- [Calendar integration](.github/skills/calendar/SKILL.md)
+- [Environment definition](environment.yml)
+- [Pipeline configuration](dvc.yaml)
+- [Quality workflow](.github/workflows/quality.yml)
