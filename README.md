@@ -18,6 +18,22 @@ Treat the repository as a foundation for a real project. Do not interpret the ex
 
 ## Quick Start
 
+### Start from the template
+
+Clone this repository into a new project directory. Replace `[username]` with the GitHub account or organization that owns the template repository.
+
+```bash
+git clone https://github.com/[username]/research-assistant-template my-new-project
+cd my-new-project
+```
+
+If the new project should have its own Git history rather than retaining the template history:
+
+```bash
+rm -rf .git
+git init
+```
+
 ### Requirements
 
 - macOS or Linux
