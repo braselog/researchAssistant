@@ -1,18 +1,14 @@
----
-name: monthly-review
-description: Reviews monthly progress against aims and reconciles deliverables, decisions, GitHub tracking, and repository state. Use for /monthly_review, milestones, or PI reporting.
----
+### name: monthly-review
+description: Reviews monthly progress against aims using weekly reviews and material project evidence. Use for /monthly_review, milestones, or PI reporting.
 
-# Monthly project review
+## Monthly project review
 
-Synthesize project aims, weekly reviews, decision records, tasks, GitHub issues/PRs, git history, pipeline outputs, manuscript state, and prior monthly review.
+Use weekly reviews as the primary input. Consult decisions, issues, repository state, deliverables, and manuscript evidence only where needed to verify material claims or resolve inconsistency. Do not reconstruct the month from every project store when weekly reviews are current.
 
-Assess progress by aim; methodological or scope changes; unresolved decisions; repeated blockers; validation/reproducibility status; deliverable readiness; and inconsistencies between tracked work and repository evidence.
+Assess progress by aim, changes in direction, repeated blockers, validation and reproducibility status, deliverable readiness, and material tracking drift. Do not use arbitrary completion percentages, activity counts, or unsupported duration estimates.
 
-Do not use arbitrary completion percentages, commit targets, or activity counts unless the project defines them as meaningful milestones.
+### Output
 
-## Output
-```markdown
 # Monthly review: [month]
 ## Executive summary
 ## Progress and evidence by aim
@@ -21,4 +17,11 @@ Do not use arbitrary completion percentages, commit targets, or activity counts 
 ## Risks and unresolved validity questions
 ## Deliverable status
 ## Next-month priorities
-```
+
+### Persist the result
+
+Write the authoritative review automatically to:
+
+`.research/logs/monthly/YYYY-MM.md`
+
+Create the directory if needed. Then show only a concise summary and saved path in chat.

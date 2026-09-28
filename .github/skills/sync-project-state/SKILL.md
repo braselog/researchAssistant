@@ -1,35 +1,23 @@
----
-name: sync-project-state
-description: Reconciles tasks.md, GitHub issues and PRs, meeting actions, decision records, activity logs, and repository evidence into one coherent project state. Use before planning/reviews or when tracking may have drifted.
----
+### name: sync-project-state
+description: Repairs concrete inconsistencies among tasks, GitHub work, decisions, activity evidence, and repository state. Use when tracking has visibly drifted, not as a routine prerequisite for every plan or request.
 
-# Synchronize project state
+## Synchronize project state
 
-Treat each store according to its role:
-- `tasks.md`: lightweight personal queue;
-- GitHub issues/PRs: substantial repository work and review lifecycle;
+Respect authoritative stores:
+- `tasks.md`: small personal actions;
+- GitHub issues/PRs: substantial unfinished repository work;
 - `.research/decisions/`: durable rationale and consequences;
-- activity/meeting logs: historical evidence;
-- weekly plans: temporary prioritization views, not task stores.
+- activity and meeting logs: historical evidence;
+- weekly plans and reviews: linked temporary views, not task stores.
 
-## Workflow
-1. Read all relevant stores and recent git history.
-2. Match items using explicit IDs, links, wording, affected files, and meeting sources.
-3. Detect duplicates, orphaned actions, completed-but-open work, closed-but-unverified work, conflicting priorities/statuses, and unrecorded decisions.
-4. Produce a proposed reconciliation plan before destructive or remote changes.
-5. Apply approved local updates and use `manage-github-work` for approved remote changes.
-6. Preserve history and links; do not silently merge semantically different work.
+Investigate only the stores implicated by the inconsistency. Match items using stable IDs and explicit links. Detect duplicates, orphaned actions, completed-but-open work, closed-but-unverified work, conflicting status, and unrecorded consequential decisions.
 
-## Output
-```markdown
+Propose reconciliation before destructive or remote changes. Apply approved local changes and use `manage-github-work` for approved remote changes. Preserve history. Link authoritative records instead of copying their content.
+
+### Output
+
 ## State summary
 ## Conflicts and orphaned items
 ## Proposed updates
-- [ ] tasks.md: ...
-- [ ] GH-N: ...
-- [ ] DNNNN: ...
 ## Applied updates
 ## Unresolved
-```
-
-When no stable identifier exists, add one rather than relying on approximate title matching.

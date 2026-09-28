@@ -1,38 +1,64 @@
----
-name: plan-week
-description: Creates a realistic weekly plan from project aims, synchronized tasks, GitHub work, decisions, calendar constraints, and researcher preferences. Use for /plan_week or start-of-week planning.
----
+### name: plan-week
+description: Creates a calendar-aware weekly priority framework from current work, fixed commitments, dependencies, and researcher preferences. Use for /plan_week or start-of-week planning.
 
-# Plan the week
+## Plan the week
 
-Read the researcher profile, project aims, phase checklist, latest review, `tasks.md`, open GitHub issues/PRs, unresolved decisions, and the calendar skill. For the planning range, run `bash .github/skills/calendar/scripts/calendar-wrapper.sh week --brief` or the appropriate custom range, then query free time with explicit work hours from `~/.researchAssistant/researcher_telos.md`.
+Create a flexible priority framework, not a detailed prediction of how research will unfold.
 
-Run a lightweight state reconciliation first. Do not plan duplicate, closed, blocked, or already-completed work. Ask about unavailable days or deadlines only when the calendar and project records do not answer them. Propose research blocks and the required manual `/wrap-up` and review reminders first; add all calendar events only after explicit approval using the calendar skill.
+### Minimum context
 
-## Planning rules
+Read only:
+- the latest weekly review;
+- current open GitHub issues and lightweight tasks;
+- known deadlines, meetings, and preparation needs;
+- calendar availability;
+- unresolved blockers that affect work ordering.
+
+Consult project telos, decisions, or repository details only when needed to resolve ambiguity. Invoke `sync-project-state` only when a concrete inconsistency would materially affect the plan.
+
+### Planning rules
+
 - Choose one primary weekly outcome tied to an active aim.
-- Prioritize blockers, deadlines, dependencies, and decision-making work.
-- Link each substantial item to its GitHub issue or decision record.
-- Put quick personal actions in `tasks.md`; do not copy the full GitHub backlog into it.
-- Match deep work to known preferences and actual calendar availability.
+- Separate fixed commitments from flexible project work.
+- Schedule meetings, preparation, follow-up, deadlines, reviews, and planning precisely.
+- Represent project work as an ordered queue: start item, next item, fallback if blocked, and explicitly deferred work.
+- Link substantial items to their GitHub issue or decision record. Do not copy full issue scope or acceptance criteria into the plan.
+- Do not infer duration from an issue title, issue length, or apparent complexity.
+- Use an effort estimate only when supported by prior work, a concrete breakdown, comparable evidence, or a user estimate.
+- When effort is uncertain, schedule an initial investigation block and a checkpoint. Do not allocate the remainder of the week by default.
+- Prescribe issue internals only when dependencies, next steps, and acceptance criteria are already understood or the user requests detailed implementation planning.
+- Use flexible focus blocks such as `Highest-priority unblocked issue` when exact work cannot be predicted.
 - Include buffer and explicit non-goals.
-- Pair implementation with validation and the required state/documentation update.
-- Always include a `/wrap-up` block at the end of each planned work session or, when that would be excessive, at least at the end of each substantive research day.
-- Include `/weekly-review` near the end of the working week and `/plan-week` at the start of the next planning cycle.
-- Include `/monthly-review` and `/quarterly-review` only when the applicable period ends during the planned week or the review is overdue.
-- Treat these as short manual assistant calls, not automated analyses. Schedule calendar reminders with titles such as `Review: /wrap-up` and `Review: /weekly-review`.
+- Include `/wrap-up` after substantive research days, `/weekly-review` near the end of the week, and `/plan-week` at the next planning point. Include monthly or quarterly reminders only when due.
+- Propose calendar events first. Add them only after explicit approval through the calendar skill.
 
-## Output
-```markdown
+### Replanning triggers
+
+Reassess the queue when:
+- the current issue is completed;
+- it becomes materially blocked;
+- a meeting changes priorities;
+- new evidence invalidates a dependency; or
+- the primary weekly outcome is achieved early.
+
+Use `/next` to select the immediate next issue. Regenerate the weekly plan only when the weekly outcome, capacity, constraints, or priority order materially changes.
+
+### Output
+
 # Weekly plan: [week]
 ## Primary outcome
-## Must complete
-## Should complete
-## If time allows
+## Fixed commitments and preparation
+## Ordered work queue
+## Dependencies and fallback work
 ## Explicitly deferred
-## Calendar-aware allocation
-## Assistant calls and review reminders
-## Risks, decisions, and buffer
-```
+## Flexible focus blocks
+## Wrap-up and review reminders
+## Replanning triggers
 
-Before finalizing, verify that the plan contains the appropriate `/wrap-up`, weekly, monthly, and quarterly review reminders. Save to `.research/logs/weekly/YYYY-MM-DD-plan.md` when requested. See [original guidance](reference/original-guidance.md) for work-inventory and scheduling preferences.
+### Persist the result
+
+The Markdown file is the authoritative output. Write the final plan automatically to:
+
+`.research/logs/weekly/YYYY-MM-DD-plan.md`
+
+Create the directory if needed. Then show only a concise summary and saved path in chat.

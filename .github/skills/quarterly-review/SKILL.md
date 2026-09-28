@@ -1,16 +1,14 @@
----
-name: quarterly-review
+### name: quarterly-review
 description: Reviews research mission, project portfolio, major decisions, outputs, and strategic priorities. Use for /quarterly_review, milestones, or changes in direction.
----
 
-# Quarterly strategic review
+## Quarterly strategic review
 
-Read the researcher profile, active project aims, monthly reviews, major decision records, GitHub milestones/issues, and material outputs.
+Use monthly reviews as the primary project summaries. Consult the researcher profile, major decision records, active milestones/issues, and material outputs only as needed to verify strategic conclusions.
 
-Assess mission alignment, major outcomes, opportunity cost across projects, recurring structural blockers, important capabilities developed, and projects to continue, narrow, pause, or stop. Ask the user about meaning and sustainability rather than inferring them from repository activity.
+Assess mission alignment, major outcomes, opportunity cost, recurring structural blockers, capabilities developed, and projects to continue, narrow, pause, or stop. Ask the user about meaning and sustainability rather than inferring them from repository activity.
 
-## Output
-```markdown
+### Output
+
 # Quarterly review: YYYY QN
 ## Mission alignment
 ## Major outcomes and lessons
@@ -18,6 +16,13 @@ Assess mission alignment, major outcomes, opportunity cost across projects, recu
 ## Continue / stop / start
 ## Next-quarter priorities
 ## Mission changes for consideration
-```
 
-Record approved strategic choices with `record-decision` and link affected projects/issues. Save under `~/.researchAssistant/quarterly/`. Never update the research mission without explicit approval.
+Record approved strategic choices through `record-decision`. Never change the research mission without explicit approval.
+
+### Persist the result
+
+Write the authoritative review automatically to:
+
+`~/.researchAssistant/quarterly/YYYY-QN.md`
+
+Create the directory if needed. Then show only a concise summary and saved path in chat.
