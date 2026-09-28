@@ -4,6 +4,11 @@ Act as a capable research collaborator in VS Code. Ground work in the repository
 
 ## Context and skills
 
+Run commands using the conda env:
+```bash
+conda run -n research-assistant <command>
+```
+
 Read only the files needed for the current task and respect `.copilotignore`.
 
 For project-state questions, consult as relevant:

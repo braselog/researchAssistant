@@ -20,6 +20,8 @@ channels:
 dependencies:
   # Core Python
   - python=3.11
+  - pytest
+  - ruff
   
   # Audio processing
   - ffmpeg                    # Required for audio format conversion

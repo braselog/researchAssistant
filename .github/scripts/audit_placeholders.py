@@ -2,10 +2,13 @@
 """Reject executable placeholder statements in project production Python."""
 import ast
 from pathlib import Path
-SKIP={'.git','.venv','tests','__pycache__','.github/skills'}
+SKIP_PARTS={'.git','.venv','tests','__pycache__'}
+SKIP_PREFIXES={('.github','skills')}
 issues=[]
 for path in Path('.').rglob('*.py'):
-    if any(part in SKIP for part in path.parts) or path.resolve()==Path(__file__).resolve():
+    if (any(part in SKIP_PARTS for part in path.parts)
+            or any(path.parts[:len(prefix)] == prefix for prefix in SKIP_PREFIXES)
+            or path.resolve()==Path(__file__).resolve()):
         continue
     try:
         tree=ast.parse(path.read_text(encoding='utf-8'))
